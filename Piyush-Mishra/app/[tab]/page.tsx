@@ -10,10 +10,9 @@ interface Props {
 export default async function TabPage({ params }: Props) {
   const { tab } = await params;
 
-  // normalise url param — /incidents → "Incidents"
   const normalised = (tab.charAt(0).toUpperCase() + tab.slice(1)) as TabType;
 
-  // invalid tab → 404
+  // invalid tab  404
   if (!(tabs as readonly string[]).includes(normalised)) {
     notFound();
   }
