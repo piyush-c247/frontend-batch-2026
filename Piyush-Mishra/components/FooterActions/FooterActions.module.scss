@@ -1,0 +1,17 @@
+@import '@/styles/abstracts/variables';
+@import '@/styles/abstracts/mixins';
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.exit {
+  @include button($color-danger);
+}
+
+.next {
+  @include button($color-primary);
+}

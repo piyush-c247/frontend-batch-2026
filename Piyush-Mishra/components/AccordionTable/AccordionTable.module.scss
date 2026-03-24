@@ -1,0 +1,37 @@
+@use '@/styles/abstracts/variables' as *;
+
+
+.accordion {
+  margin-bottom: $spacing-md;
+}
+
+
+.accordion :global(.accordion-item) {
+  border: 1px solid $color-border;
+  margin-bottom: $spacing-md;
+  border-radius: $border-radius-sm;
+  overflow: hidden;
+}
+
+.accordion :global(.accordion-button) {
+  background-color: $color-primary !important;
+  color: $color-surface !important;
+  font-weight: 500;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &::after {
+    filter: brightness(0) invert(1); 
+  }
+
+  &:not(.collapsed) {
+    background-color: $color-primary !important;
+    color: $color-surface !important;
+  }
+}
+
+.accordion :global(.accordion-body) {
+  background: $color-surface;
+}

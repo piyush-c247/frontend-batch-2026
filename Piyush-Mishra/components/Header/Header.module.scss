@@ -1,0 +1,84 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 1000;
+
+  background: $color-surface;
+  border-bottom: 1px solid $color-border;
+
+  padding: 0 $spacing-md;
+
+  @include flex-between;
+}
+
+
+.left {
+  @include flex-center;
+
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: $color-primary;
+    letter-spacing: 1px;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+
+  strong {
+    font-size: $font-size-base;
+    color: $text-primary;
+  }
+}
+
+.location {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+
+  span {
+    margin-left: 4px;
+    color: $text-secondary;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+  //margin-right: 30px;
+
+  span {
+    font-size: $font-size-base;
+    font-weight: 500;
+  }
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $color-primary-light;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: $color-border;
+}

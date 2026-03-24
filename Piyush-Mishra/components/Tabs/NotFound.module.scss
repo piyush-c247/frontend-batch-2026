@@ -1,0 +1,41 @@
+@import '@/styles/abstracts/variables';
+@import '@/styles/abstracts/mixins';
+
+.container {
+    @include flex-center;
+//   display: flex;
+  
+//   align-items: center;
+//   justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  gap: 12px;
+  font-family: "Inter", "Segoe UI", sans-serif;
+
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: $color-primary;
+    margin: 0;
+  }
+
+  p {
+    font-size: $spacing-md;
+    color: $color-muted;
+    margin: 0;
+  }
+
+  .link {
+    margin-top: 8px;
+    padding: 8px 20px;
+    background: $color-primary;
+    color: $color-surface;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

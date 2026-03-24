@@ -1,0 +1,45 @@
+@use '@/styles/abstracts/variables' as *;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    vertical-align: middle;
+    padding-right: 12px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.question {
+  width: 30%;
+  font-size: $font-size-sm;
+}
+
+.answers {
+  
+}
+
+.answersWrapper {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.answerItem {
+  min-width: 150px;
+}
+
+.comment {
+  width: auto;
+  white-space: nowrap;
+}
+
+.helper {
+  font-size: 11px;
+  color: $text-secondary;
+  margin-top: 2px;
+}

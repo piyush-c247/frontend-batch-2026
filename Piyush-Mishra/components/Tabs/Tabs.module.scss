@@ -1,0 +1,22 @@
+@import '@/styles/abstracts/variables';
+
+.tabs {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.tab {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border;
+  background: $tab-bg;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  font-size: $font-size-sm;
+}
+
+.active {
+  background: $color-primary-light;
+  color: $color-surface;
+  border-color: transparent;
+}

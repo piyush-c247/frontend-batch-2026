@@ -1,0 +1,90 @@
+@use '@/styles/abstracts/variables' as *;
+
+$base-height: 32px; 
+$standard-width: 150px; 
+$textarea-extra: 10px;
+
+
+.baseControl {
+  height: $base-height !important;
+  width: $standard-width;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $text-secondary;
+  background-color: $color-surface;
+  border: 1px solid $select-bg;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  display: block;
+
+  &::placeholder {
+    color: $text-secondary;
+    font-size: 12px;
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-light;
+    box-shadow: $shadow-md;
+  }
+}
+
+
+.inputField {
+  @extend .baseControl;
+}
+
+
+.selectField {
+  @extend .baseControl;
+  background-color: $select-bg !important;
+  cursor: pointer;
+}
+
+
+.textareaField {
+  @extend .baseControl;
+  width: calc(#{$standard-width} + #{$textarea-extra}) !important;
+  resize: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+// Percentage field 
+
+.percentageWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: $standard-width;
+}
+
+.percentageField {
+  @extend .baseControl;
+  width: 100% !important;
+  background-color: $select-bg !important;
+  padding-right: 24px; 
+
+  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield; 
+  }
+}
+
+.percentageSymbol {
+  position: absolute;
+  right: 8px;
+  font-size: 13px;
+  color: $text-secondary;
+  pointer-events: none; 
+  line-height: 1;
+}

@@ -1,0 +1,48 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+}
+
+@mixin input-style {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-base;
+  color: $text-primary;
+  background: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba(47, 95, 167, 0.1);
+  }
+}
+
+@mixin button($bg, $color: #fff) {
+  background: $bg;
+  color: $color;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  font-size: $font-size-base;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

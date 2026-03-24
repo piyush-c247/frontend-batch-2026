@@ -1,0 +1,72 @@
+
+@use './abstracts/variables';
+@use './abstracts/mixins';
+@use './base/resets';
+@use './base/typography';
+
+
+.container {
+  padding: $spacing-lg;
+}
+
+
+.card {
+  @include card;
+  padding: $spacing-md;
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  }
+
+  input,
+  select,
+  textarea {
+    @include input-style;
+  }
+}
+
+
+.btn {
+  &-primary {
+    @include button($color-primary);
+  }
+
+  &-secondary {
+    @include button($color-secondary);
+  }
+
+  &-danger {
+    @include button($color-danger);
+  }
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid $color-border;
+    padding: $spacing-sm;
+    text-align: left;
+  }
+
+  th {
+    background: #f1f3f7;
+    font-weight: 600;
+  }
+}
+
+.section-header {
+  background: $color-primary;
+  color: #fff;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm $border-radius-sm 0 0;
+}

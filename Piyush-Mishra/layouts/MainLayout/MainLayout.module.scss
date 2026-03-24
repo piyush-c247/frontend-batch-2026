@@ -1,0 +1,27 @@
+@import '@/styles/abstracts/variables';
+@import '@/styles/abstracts/mixins';
+
+.layout {
+    min-height: 100vh;
+    background: $color-bg;
+    overflow: auto;
+}
+
+.headerWrapper {
+    margin-bottom: $spacing-lg ;
+}
+
+.main {
+    padding: $spacing-md;
+    margin: calc(64px + #{$spacing-lg});
+    margin-left: $spacing-xl;
+    margin-right: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    background-color: $color-surface;
+    border-radius: $border-radius-lg;
+}
+
+
+.content {
+    margin-top: $spacing-md;
+}

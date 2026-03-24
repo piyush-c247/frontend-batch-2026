@@ -1,0 +1,163 @@
+@use '@/styles/abstracts/variables' as *;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  min-width: 200px;
+  border-right: 1px solid $color-border;
+  background: $color-surface;
+}
+
+//Legend
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  border-bottom: 1px solid $color-border;
+  flex-wrap: wrap;
+}
+
+.legendLabel {
+  font-weight: 500;
+  color: $text-primary;
+  margin-right: 2px;
+}
+
+.legendText {
+  color: $text-secondary;
+  font-size: 11px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &[data-filled="true"] {
+    background: $color-success;
+  }
+
+  &[data-filled="false"] {
+    background: $color-warning;
+  }
+}
+
+//Section list
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-xs 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: 10px $spacing-md;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s;
+
+  &:hover {
+    background: $color-bg;
+
+    .actions {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &.active {
+    background: $color-primary;
+    color: $color-surface;
+
+    .title {
+      color: $color-surface;
+    }
+  }
+}
+
+.indicator {
+  width: 4px;
+  min-width: 4px;
+  height: 28px;
+  border-radius: 2px;
+  flex-shrink: 0;
+
+  &[data-filled="true"] {
+    background: $color-success;
+  }
+
+  &[data-filled="false"] {
+    background: $color-warning;
+  }
+}
+
+.title {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $text-primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.renameInput {
+  flex: 1;
+  font-size: $font-size-sm;
+  border: 1px solid $color-primary-light;
+  border-radius: $border-radius-sm;
+  padding: 2px 6px;
+  outline: none;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.actionBtn {
+  background: $color-surface;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 1;
+  margin-left: 4px;
+  border-radius: $border-radius-sm;
+
+  &:hover {
+    // background: rgba(0, 0, 0, 0.08);
+    transition:ease-in 0.20s
+  }
+}
+
+//Add button 
+
+.addBtn {
+  margin: $spacing-sm $spacing-md;
+  padding: $spacing-xs $spacing-sm;
+  background: $color-primary;
+  color: $color-surface;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}

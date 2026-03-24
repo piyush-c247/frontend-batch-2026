@@ -1,0 +1,65 @@
+@import '@/styles/abstracts/variables';
+@import '@/styles/abstracts/mixins';
+
+.container {
+  margin-bottom: $spacing-md;
+  border-bottom: 1px solid $border-colour;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.card {
+  @include card; 
+  background-color: $tab-bg; 
+  padding: 16px;
+  margin-bottom: $spacing-sm;
+  max-width: 500px; 
+}
+
+.scoreList {
+  padding-bottom: 12px;
+}
+
+.totalSection {
+  border-top: 1px solid $border-colour; 
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.label {
+  width: 180px; 
+  color: $text-secondary;
+}
+
+.totalLabel {
+  width: 180px;
+  font-size: 16px;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.separator {
+  padding: 0 10px;
+  color: $text-primary;
+}
+
+.value {
+  color: $text-primary;
+}
+
+.totalValue {
+  font-size: 14px;
+  font-weight: 600;
+}
