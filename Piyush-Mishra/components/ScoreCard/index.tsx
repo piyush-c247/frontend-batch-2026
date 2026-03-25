@@ -2,12 +2,6 @@ import styles from './ScoreCard.module.scss';
 import { SectionScore } from "@/utils/sectionScoring";
 import {LABELS} from './constants'
 
-// interface SectionScore {
-//   sectionId: string;
-//   title: string;
-//   percentage: number;
-// }
-
 interface Props {
   sectionScores: SectionScore[];
   total: number;
