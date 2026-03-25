@@ -24,7 +24,7 @@
   border-radius: $border-radius-sm;
   font-size: $font-size-base;
   color: $text-primary;
-  background: #fff;
+  background: $color-surface;
 
   &:focus {
     outline: none;
