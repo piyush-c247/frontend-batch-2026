@@ -14,7 +14,7 @@ import DriversPage from "@/features/drivers/Driverspage";
 import PerformancePage from "@/features/performance/Performancepage";
 import BonusPage from "@/features/bonus/BonusPage";
 import SummaryPage from "@/features/summary/SummaryPage";
-import { LABELS } from "./constants";
+import { LABELS, TABS} from "./constants";
 
 export default function MainLayout() {
   const {
@@ -32,47 +32,47 @@ export default function MainLayout() {
     switch (activeTab) {
       case "Incidents":
         return (
-          <IncidentsPage
-            values={formData.Incidents}
-            setValues={(data) => setTabValues("Incidents", data)}
+              <IncidentsPage
+            values={formData[TABS.INCIDENTS]}
+            setValues={(data) => setTabValues(TABS.INCIDENTS, data)}
           />
         );
-      case "Maintenance":
+      case TABS.MAINTENANCE:
         return (
           <MaintenancePage
-            values={formData.Maintenance}
-            setValues={(data) => setTabValues("Maintenance", data)}
+            values={formData[TABS.MAINTENANCE]}
+            setValues={(data) => setTabValues(TABS.MAINTENANCE, data)}
           />
         );
-      case "Policies":
+      case TABS.POLICIES:
         return (
           <PoliciesPage
-            values={formData.Policies}
-            setValues={(data) => setTabValues("Policies", data)}
+            values={formData[TABS.POLICIES]}
+            setValues={(data) => setTabValues(TABS.POLICIES, data)}
           />
         );
-      case "Drivers":
+      case TABS.DRIVERS:
         return (
           <DriversPage
-            values={formData.Drivers}
-            setValues={(data) => setTabValues("Drivers", data)}
+            values={formData[TABS.DRIVERS]}
+            setValues={(data) => setTabValues(TABS.DRIVERS, data)}
           />
         );
-      case "Performance":
+      case TABS.PERFORMANCE:
         return (
           <PerformancePage
-            values={formData.Performance}
-            setValues={(data) => setTabValues("Performance", data)}
+            values={formData[TABS.PERFORMANCE]}
+            setValues={(data) => setTabValues(TABS.PERFORMANCE, data)}
           />
         );
-      case "Bonus":
+      case TABS.BONUS:
         return (
           <BonusPage
-            values={formData.Bonus}
-            setValues={(data) => setTabValues("Bonus", data)}
+            values={formData[TABS.BONUS]}
+            setValues={(data) => setTabValues(TABS.BONUS, data)}
           />
         );
-      case "Summary":
+      case TABS.SUMMARY:
         return <SummaryPage />;
       default:
         return <div>{LABELS.COMING_SOON}</div>;
