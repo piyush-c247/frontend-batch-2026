@@ -1,6 +1,16 @@
 @import '@/styles/abstracts/variables';
 @import '@/styles/abstracts/mixins';
 
+@mixin base-button($bg, $color, $padding, $font-size) {
+  background: $bg;
+  color: $color;
+  padding: $padding;
+  font-size: $font-size;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .card {
   @include card;
   padding: 16px 20px;
@@ -34,26 +44,14 @@
   gap: 8px;
   
   .iconBtn {
-    background: $color-primary; 
-    color: $color-surface;
-    border: none;
-    padding: 4px;
-    border-radius: 4px;
+    @include base-button($color-primary, $color-surface, 4px, 14px);
     display: flex;
-    cursor: pointer;
-    font-size: 14px;
   }
 }
 
 .auditBtn {
-  background-color: $color-primary-light; 
-  color: $color-surface;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+  @include base-button($color-primary-light, $color-surface, 8px 16px, 12px);
   font-weight: 500;
-  font-size: 12px;
-  cursor: pointer;
 }
 
 .grid {
@@ -70,7 +68,6 @@
 
   .metaRight {
     text-align: right;
-    color: $text-primary;
     font-size: 11px;
   }
 }

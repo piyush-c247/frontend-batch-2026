@@ -4,35 +4,38 @@ import styles from './DetailsSection.module.scss';
 
 export default function DetailsSection() {
   const { carrier, meta } = AUDIT_DATA;
+  const carrierFields = [
+    { label: LABELS.CARRIER_DBA, value: carrier.dba },
+    { label: LABELS.NSC_CVOR, value: carrier.nsc },
+    { label: LABELS.DOT, value: carrier.dot },
+    { label: LABELS.OWNER, value: carrier.owner },
+    { label: LABELS.OWNER_PHONE, value: carrier.phone },
+    { label: LABELS.OWNER_EMAIL, value: carrier.email },
+  ];
 
   return (
     <div className={styles.card}>
-      {/* Top Header Section */}
       <div className={styles.header}>
         <div className={styles.left}>
           <h2>{carrier.name}</h2>
           <div className={styles.iconGroup}>
-            <button className={styles.iconBtn}><FiLink /></button>
-            <button className={styles.iconBtn}><FiFolder /></button>
+            {[FiLink, FiFolder].map((Icon, i) => (
+              <button key={i} className={styles.iconBtn}><Icon /></button>
+            ))}
           </div>
         </div>
-        <button className={styles.auditBtn}>
-          {LABELS.TITLE}
-        </button>
+        <button className={styles.auditBtn}>{LABELS.TITLE}</button>
       </div>
 
-      {/* Main Info Grid */}
       <div className={styles.grid}>
-        <div><span className={styles.label}>{LABELS.CARRIER_DBA}</span> {carrier.dba}</div>
-        <div><span className={styles.label}>{LABELS.NSC_CVOR}</span> {carrier.nsc}</div>
-        <div><span className={styles.label}>{LABELS.DOT}</span> {carrier.dot}</div>
-        <div className={styles.metaRight}>
-           {LABELS.LAST_SAVED} {meta.lastSaved}
-        </div>
+        {carrierFields.slice(0, 3).map((f, i) => (
+          <div key={i}><span className={styles.label}>{f.label}</span> {f.value}</div>
+        ))}
+        <div className={styles.metaRight}>{LABELS.LAST_SAVED} {meta.lastSaved}</div>
 
-        <div><span className={styles.label}>{LABELS.OWNER}</span> {carrier.owner}</div>
-        <div><span className={styles.label}>{LABELS.OWNER_PHONE}</span> {carrier.phone}</div>
-        <div><span className={styles.label}>{LABELS.OWNER_EMAIL}</span> {carrier.email}</div>
+        {carrierFields.slice(3).map((f, i) => (
+          <div key={i}><span className={styles.label}>{f.label}</span> {f.value}</div>
+        ))}
         <div className={styles.metaRight}>
           {LABELS.AUDITOR} {meta.auditor} | {LABELS.VERSION} {meta.version} | {LABELS.AUDIT_STARTED} {meta.auditStarted}
         </div>
