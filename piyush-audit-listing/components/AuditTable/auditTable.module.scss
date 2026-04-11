@@ -2,24 +2,112 @@
 
 /* ─── OUTER CONTAINER ─── */
 .outerWrapper {
-  border: 1px solid #ffffff;
-  border-radius: 6px;
+  background-color: #f1f5f9;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   overflow: hidden;
-  background-color: #ffffff;
+  padding: 0 16px 0 16px;
 }
 
-/* ─── SHARED COLUMN WIDTHS ─── */
-/* Change these in one place — all tables update */
-.colCategory { width: 90px; }
-.colSection  { width: 160px; }
-.colNum      { width: 80px; }
+/* ─── GROUP LABELS ROW (Overview / Scoring / Adjusted) ─── */
+/* These float above tables as plain text */
+.mainHeaderContainer {
+  display: flex;
+  gap: 8px;
+  //border-bottom: 2px solid #0d2645; /* The dark blue line from image */
+  //padding-bottom: 4px;
+  //margin-bottom: 8px;
+  text-align: center;
+}
 
-/* ─── ALL TABLES SHARE THESE BASE STYLES ─── */
-.table {
-  width: 100%;
+.headerGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.topLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d2645;
+  padding: 8px 0;
+  border-bottom: 3px solid #d1d5db; 
+  margin-bottom: 6px; /* Spacing between the thick line and sub-headers */
+  text-transform: uppercase; 
+}
+
+.subHeaderRow {
+  display: flex;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4b5563;
+  border-bottom: 1px solid #d1d5db;
+  margin-bottom: 4px;
+}
+
+.bottomLabels {
+  display: flex;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.redText {
+  color: #dc2626 !important;
+}
+
+/* Adjust your categoryRow gap to match the header gap exactly */
+.categoryRow {
+  display: flex;
+  gap: 8px; 
+}
+
+/* Each label width must match the sum of its mini-tables below */
+/* Table1 = 100+160+75 = 335px */
+.groupLabelOverview {
+  width: 335px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* gap */
+.groupLabelOverview::after {
+  content: '';
+}
+
+/* Table2+Table3 = 75*4 + 75*3 = 300+225 = 525px + 8px gap between them */
+.groupLabelScoring {
+  width: calc(75px * 7 + 8px);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Table4+Table5 = 75*2 + 75*2 = 300px + 8px gap */
+.groupLabelAdjusted {
+  width: calc(75px * 4 + 8px);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ─── CATEGORY ROW (flex row of 5 mini-tables) ─── */
+.categoryRow {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;          /* horizontal gap between mini-tables */
+  margin-bottom: 0;
+}
+
+/* ─── MINI TABLE (each of the 5 sub-tables) ─── */
+.miniTable {
   border-collapse: collapse;
   table-layout: fixed;
-  margin-bottom: 0 !important;
+  flex-shrink: 0;
+  background-color: #ffffff;
 
   th,
   td {
@@ -33,73 +121,29 @@
   }
 }
 
-/* ─── HEADER TABLE ─── */
-.headerWrapper {
-  /* No bottom border — category tables sit flush below */
-  border-bottom: none;
-
-  table {
-    border-bottom: none !important;
-  }
-}
-
 /* ─── HEADER CELLS ─── */
-.groupHeader {
-  background-color: #ffffff !important;
-  font-weight: 700;
-  font-size: 13px;
-  color: #111827 !important;
-}
-
-.overviewHeader {
-  background-color: #ffffff !important;
-  font-weight: 700;
-  font-size: 13px;
-  color: #111827 !important;
-}
-
-.subGroupHeader {
+.th {
   background-color: #f9fafb !important;
   font-weight: 600;
   font-size: 11.5px;
   color: #374151 !important;
 }
 
-.subHeader {
-  background-color: #f9fafb !important;
-  font-weight: 600;
-  font-size: 11.5px;
-  color: #374151 !important;
-}
-
-.redHeader {
-  background-color: #f9fafb !important;
-  font-weight: 600;
-  font-size: 11.5px;
+/* Red header — Questions + Weight under Completion % */
+.thRed {
   color: #dc2626 !important;
 }
 
-/* ─── CATEGORIES WRAPPER ─── */
-/* gap here is the spacing between each category table */
-.categoriesWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;            /* ← controls spacing between category blocks */
-  padding: 12px 0;      /* ← top/bottom breathing room */
-  background-color: #f1f5f9;  /* ← gap background matches template */
+/* Sub-label row (Completion %, Weight, Score) */
+.thSub {
+  background-color: #ffffff !important;
+  font-weight: 700;
+  font-size: 12px;
+  color: #111827 !important;
+  text-align: center;
 }
 
-/* ─── EACH CATEGORY BLOCK ─── */
-.categoryBlock {
-  background-color: #ffffff;
-
-  /* Remove double borders between stacked tables */
-  table {
-    margin-bottom: 0 !important;
-  }
-}
-
-/* ─── CATEGORY COLUMN ─── */
+/* ─── CATEGORY CELL ─── */
 .category {
   background-color: #0d2645 !important;
   color: #ffffff !important;
@@ -109,12 +153,11 @@
   text-transform: capitalize;
 }
 
-/* ─── SECTION COLUMN ─── */
+/* ─── SECTION CELL ─── */
 .sectionCell {
-  text-align: left;
-  font-weight: 400;
+  text-align: left !important;
   padding-left: 10px !important;
-  background-color: #ffffff;
+  font-weight: 400;
   color: #374151;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -125,7 +168,7 @@
   color: #374151;
 }
 
-/* ─── ROW BACKGROUNDS ─── */
+/* ─── ROW STRIPE ─── */
 .plain td {
   background-color: #ffffff;
 }
@@ -134,39 +177,39 @@
   background-color: #f8fafc !important;
 }
 
-/* ─── SECTION-SPAN CELLS (rowSpan > 1) ─── */
-.sectionSpan {
-  border-left: 2px solid #b0bec5 !important;
+/* ─── CATEGORIES WRAPPER (vertical stack with gap) ─── */
+.categoriesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
 }
 
 /* ─── TOTALS BLOCK ─── */
 .totalsBlock {
   display: flex;
   justify-content: flex-end;
+  background-color: transparent;
   padding: 0;
-  background-color: #ffffff;
-  
 }
 
-/* Right-side box only — width matches 4 Adjusted columns */
 .totalsInner {
-  width: calc(4 * 80px); 
-  border-bottom: 1px solid #d1d5db;
+  width: calc(75px * 4 + 8px); /* matches Table4 + gap + Table5 */
   border-top: 1px solid #4b5563;
+  border-bottom: 1px solid #d1d5db;
   margin-bottom: 6px;
+  background-color: #ffffff;
 }
 
-/* "Totals" label */
 .totalsTitleRow {
   text-align: center;
   font-weight: 600;
   font-size: 12px;
   color: #374151;
   padding: 6px 0;
-  border-bottom: 1px solid #d1d5db; 
+  border-bottom: 1px solid #d1d5db;
 }
 
-/* 3 values side by side */
 .totalsValuesRow {
   display: flex;
   align-items: center;
@@ -188,9 +231,10 @@
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
-  background-color: #f8fafc;
-  border-top: 2px solid #d1d5db;
+  padding: 14px 0;
+  background-color: transparent;
+  border-top: 1px solid #d1d5db;
+  margin-top: 10px;
 }
 
 .safetyLabel {
@@ -200,7 +244,7 @@
 }
 
 .safetyValue {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   color: #111827;
 }
