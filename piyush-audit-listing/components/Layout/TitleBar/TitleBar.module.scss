@@ -3,9 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #ffffff;
-  border-top: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: #0d2645;  
+  border-top: 1px solid #0a1f38;
+  border-bottom: 1px solid #0a1f38;
 }
 
 /* LEFT */
@@ -15,10 +15,10 @@
 }
 
 .title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   margin: 0;
-  color: #111827;
+  color: #ffffff;   
 }
 
 /* RIGHT */
@@ -28,9 +28,12 @@
 }
 
 .badge {
-  background-color: #e6f4ea;
-  color: #1e7e34;
-  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #16a34a;
+  color: #ffffff;
+  padding: 5px 12px;
   font-size: 12px;
   border-radius: 20px;
   font-weight: 600;

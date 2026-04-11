@@ -1,80 +1,210 @@
 @use "@/styles/variables" as *;
 
-.wrapper {
-  overflow-x: auto;
+/* ─── OUTER CONTAINER ─── */
+.outerWrapper {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
-/* TABLE ROOT */
+/* ─── SHARED COLUMN WIDTHS ─── */
+/* Change these in one place — all tables update */
+.colCategory { width: 90px; }
+.colSection  { width: 160px; }
+.colNum      { width: 80px; }
+
+/* ─── ALL TABLES SHARE THESE BASE STYLES ─── */
 .table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 0 !important;
 
   th,
   td {
     border: 1px solid #d1d5db;
-    padding: 6px 8px;
-    font-size: 12px;
+    padding: 5px 8px;
+    font-size: 11.5px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #1f2937;
+  }
+}
+
+/* ─── HEADER TABLE ─── */
+.headerWrapper {
+  /* No bottom border — category tables sit flush below */
+  border-bottom: none;
+
+  table {
+    border-bottom: none !important;
+  }
+}
+
+/* ─── HEADER CELLS ─── */
+.groupHeader {
+  background-color: #ffffff !important;
+  font-weight: 700;
+  font-size: 13px;
+  color: #111827 !important;
+}
+
+.overviewHeader {
+  background-color: #ffffff !important;
+  font-weight: 700;
+  font-size: 13px;
+  color: #111827 !important;
+}
+
+.subGroupHeader {
+  background-color: #f9fafb !important;
+  font-weight: 600;
+  font-size: 11.5px;
+  color: #374151 !important;
+}
+
+.subHeader {
+  background-color: #f9fafb !important;
+  font-weight: 600;
+  font-size: 11.5px;
+  color: #374151 !important;
+}
+
+.redHeader {
+  background-color: #f9fafb !important;
+  font-weight: 600;
+  font-size: 11.5px;
+  color: #dc2626 !important;
+}
+
+/* ─── CATEGORIES WRAPPER ─── */
+/* gap here is the spacing between each category table */
+.categoriesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;            /* ← controls spacing between category blocks */
+  padding: 12px 0;      /* ← top/bottom breathing room */
+  background-color: #f1f5f9;  /* ← gap background matches template */
+}
+
+/* ─── EACH CATEGORY BLOCK ─── */
+.categoryBlock {
+  background-color: #ffffff;
+
+  /* Remove double borders between stacked tables */
+  table {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* ─── CATEGORY COLUMN ─── */
+.category {
+  background-color: #0d2645 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* ─── SECTION COLUMN ─── */
+.sectionCell {
+  text-align: left;
+  font-weight: 400;
+  padding-left: 10px !important;
+  background-color: #ffffff;
+  color: #374151;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── NUMERIC CELLS ─── */
+.numCell {
+  color: #374151;
+}
+
+/* ─── ROW BACKGROUNDS ─── */
+.plain td {
+  background-color: #ffffff;
+}
+
+.striped td {
+  background-color: #f8fafc !important;
+}
+
+/* ─── SECTION-SPAN CELLS (rowSpan > 1) ─── */
+.sectionSpan {
+  border-left: 2px solid #b0bec5 !important;
+}
+
+/* ─── TOTALS BLOCK ─── */
+.totalsBlock {
+  background-color: #f8fafc;
+  border-top: 1px solid #d1d5db;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.totalsTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 0 !important;
+
+  td {
+    border: 1px solid #d1d5db;
+    padding: 5px 8px;
+    font-size: 11.5px;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
   }
-
-  th {
-    background: #f9fafb;
-    font-weight: 600;
-  }
 }
 
-/* GROUP HEADERS */
-.group {
-  background-color: #e5e9ef;
-  font-weight: 700;
-  border-bottom: 2px solid #cfd6df;
-}
-
-/* CATEGORY COLUMN */
-.category {
-  background-color: #2a4365 !important;
-  color: #ffffff;
-  font-weight: 600;
+.totalsTitle {
   text-align: center;
-  min-width: 120px;
-}
-
-/* SECTION COLUMN */
-.sectionCell {
-  background-color: #eef1f4;
-  text-align: left;
-  font-weight: 500;
-  min-width: 180px;
-}
-
-/* STRIPING */
-.striped td:not(.category):not(.sectionCell) {
-  background-color: #f5f7fa;
-}
-
-/* COLUMN GROUP SEPARATORS */
-.table td:nth-child(9),
-.table th:nth-child(9) {
-  border-right: 2px solid #cfd6df;
-}
-
-.table td:nth-child(13),
-.table th:nth-child(13) {
-  border-right: 2px solid #cfd6df;
-}
-
-/* FOOTER */
-.footer {
-  background-color: #f0f3f7;
   font-weight: 600;
-  border-top: 2px solid #cfd6df;
+  font-size: 12px;
+  color: #374151;
+  padding: 6px 0 !important;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #d1d5db !important;
 }
 
-/* FINAL SCORE */
-.finalScore {
-  background-color: #e2e8f0;
+.totalsEmpty {
+  background-color: #f8fafc;
+  border: none !important;
+}
+
+.totalsCell {
+  text-align: center;
+  font-size: 12px;
   font-weight: 700;
-  text-align: right;
+  color: #111827;
+  padding: 6px 8px !important;
+  background-color: #f8fafc;
+}
+
+/* ─── OVERALL SAFETY SCORE BAR ─── */
+.safetyScoreBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: #f8fafc;
+  border-top: 2px solid #d1d5db;
+}
+
+.safetyLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.safetyValue {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111827;
 }
