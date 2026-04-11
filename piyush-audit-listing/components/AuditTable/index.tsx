@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./auditTable.module.scss";
+import styles from "./AuditTable.module.scss";
 import { auditData } from "@/data/mockData";
 import { getAllSections } from "@/utils/normalizeData";
 import { formatNumber, formatPercent } from "@/utils/format";

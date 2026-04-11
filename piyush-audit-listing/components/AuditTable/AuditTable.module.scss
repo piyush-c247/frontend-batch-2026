@@ -1,0 +1,202 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+/* ─── OUTER CONTAINER ─── */
+.outerWrapper {
+  background-color: $bg-outer;
+  border: 1px solid $border-light;
+  border-radius: $border-radius-outer;
+  overflow: hidden;
+  padding: 0 $padding-outer;
+}
+
+/* ─── MAIN HEADER CONTAINER ─── */
+.mainHeaderContainer {
+  display: flex;
+  gap: $gap-tables;
+  text-align: center;
+}
+
+.headerGroup {
+  @include flex-column;
+}
+
+.topLabel {
+  font-size: $font-size-title;
+  font-weight: 700;
+  color: $navy-dark;
+  padding: $gap-tables 0;
+  border-bottom: 3px solid $border-light;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.subHeaderRow {
+  display: flex;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  color: $border-medium;
+  border-bottom: 1px solid $border-light;
+  margin-bottom: 4px;
+}
+
+.bottomLabels {
+  display: flex;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  color: $text-secondary;
+
+  div {
+    @include flex-center;
+  }
+}
+
+.redText {
+  color: $text-red !important;
+}
+
+/* ─── CATEGORY ROW ─── */
+.categoryRow {
+  @include flex-row($gap-tables);
+  margin-bottom: 0;
+}
+
+/* ─── UNUSED — kept for reference ─── */
+.groupLabelOverview { width: 335px; text-align: center; flex-shrink: 0; }
+.groupLabelScoring  { width: calc(75px * 7 + 8px); text-align: center; flex-shrink: 0; }
+.groupLabelAdjusted { width: calc(75px * 4 + 8px); text-align: center; flex-shrink: 0; }
+
+/* ─── MINI TABLE ─── */
+.miniTable {
+  border-collapse: collapse;
+  table-layout: fixed;
+  flex-shrink: 0;
+  background-color: $bg-white;
+
+  th,
+  td {
+    @include table-cell-base;
+  }
+}
+
+/* ─── HEADER CELLS ─── */
+.th {
+  background-color: $bg-header-cell !important;
+  font-weight: 600;
+  font-size: $font-size-cell;
+  color: $text-secondary !important;
+}
+
+.thRed {
+  color: $text-red !important;
+}
+
+.thSub {
+  background-color: $bg-white !important;
+  font-weight: 700;
+  font-size: $font-size-base;
+  color: $text-primary !important;
+  text-align: center;
+}
+
+/* ─── CATEGORY CELL ─── */
+.category {
+  background-color: $navy-dark !important;
+  color: $bg-white !important;
+  font-weight: 600;
+  font-size: $font-size-base;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* ─── SECTION CELL ─── */
+.sectionCell {
+  text-align: left !important;
+  padding-left: 10px !important;
+  font-weight: 400;
+  color: $text-secondary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── NUMERIC CELLS ─── */
+.numCell {
+  color: $text-secondary;
+}
+
+/* ─── ROW STRIPE ─── */
+.plain td {
+  background-color: $bg-white;
+}
+
+.striped td {
+  background-color: $bg-stripe !important;
+}
+
+/* ─── CATEGORIES WRAPPER ─── */
+.categoriesWrapper {
+  @include flex-column($gap-categories);
+  padding: $padding-section;
+}
+
+/* ─── TOTALS BLOCK ─── */
+.totalsBlock {
+  @include flex-end;
+  background-color: transparent;
+  padding: 0;
+}
+
+.totalsInner {
+  width: calc(75px * 4 + #{$gap-tables});
+  border-top: 1px solid $border-medium;
+  border-bottom: 1px solid $border-light;
+  margin-bottom: 6px;
+  background-color: $bg-white;
+}
+
+.totalsTitleRow {
+  text-align: center;
+  font-weight: 600;
+  font-size: $font-size-base;
+  color: $text-secondary;
+  padding: 6px 0;
+  border-bottom: 1px solid $border-light;
+}
+
+.totalsValuesRow {
+  display: flex;
+  align-items: center;
+}
+
+.totalsCell {
+  flex: 1;
+  text-align: center;
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: $text-primary;
+  padding: $gap-tables 0;
+  border-bottom: 1px solid $border-medium;
+}
+
+/* ─── OVERALL SAFETY SCORE BAR ─── */
+.safetyScoreBar {
+  @include flex-end;
+  align-items: center;
+  gap: $gap-tables;
+  padding: 14px 0;
+  background-color: transparent;
+  border-top: 1px solid $border-light;
+  margin-top: $gap-categories;
+}
+
+.safetyLabel {
+  font-size: $font-size-label;
+  font-weight: 600;
+  color: $text-secondary;
+}
+
+.safetyValue {
+  font-size: $font-size-score;
+  font-weight: 800;
+  color: $text-primary;
+}

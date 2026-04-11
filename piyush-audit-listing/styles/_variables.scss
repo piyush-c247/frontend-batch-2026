@@ -1,8 +1,37 @@
+// ── Existing ──
 $primary-blue: #1f3b5b;
 $light-gray: #f1f3f5;
 $row-stripe: #f8f9fb;
 $border-color: #e5e7eb;
 $text-color: #333;
-
 $font-size-sm: 13px;
 $cell-padding: 8px 10px;
+
+// ── Colors ──
+$navy-dark: #0d2645;
+$bg-outer: #f1f5f9;
+$bg-stripe: #f8fafc;
+$bg-header-cell: #f9fafb;
+$bg-white: #ffffff;
+$border-light: #d1d5db;
+$border-medium: #4b5563;
+$text-primary: #111827;
+$text-secondary: #374151;
+$text-muted: #1f2937;
+$text-red: #dc2626;
+
+// ── Font sizes ──
+$font-size-xs: 11px;
+$font-size-cell: 11.5px;
+$font-size-base: 12px;
+$font-size-label: 13px;
+$font-size-title: 14px;
+$font-size-score: 17px;
+
+// ── Spacing ──
+$gap-tables: 8px;
+$gap-categories: 10px;
+$padding-outer: 16px;
+$padding-cell: 5px 8px;
+$padding-section: 10px 0;
+$border-radius-outer: 8px;
