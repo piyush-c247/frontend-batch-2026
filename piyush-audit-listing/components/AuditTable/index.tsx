@@ -169,15 +169,22 @@ export const AuditTable = () => {
                     <div className={styles.scoringSubGrid}>
                         <div className={styles.subHeaderRow}>
                             <div style={{ width: W_NUM * 2 }}>Completion %</div>
-                            <div style={{ width: W_NUM * 5 }}></div>
+                            <div style={{ width: W_NUM }}>Type Total</div>
+                            <div style={{ width: W_NUM }}>% of Total</div>
+                            <div style={{ width: W_NUM }}>Section Total</div>
+                            {/* gap + table3 */}
+                            <div style={{ width: 8 }}></div>
+                            <div style={{ width: W_NUM * 2 }}></div>
                         </div>
 
                         <div className={styles.bottomLabels}>
                             <div style={{ width: W_NUM }} className={styles.redText}>Questions</div>
                             <div style={{ width: W_NUM }} className={styles.redText}>Weight</div>
-                            <div style={{ width: W_NUM }}>Type Total</div>
-                            <div style={{ width: W_NUM }}>% of Total</div>
-                            <div style={{ width: W_NUM }}>Section Total</div>
+                            <div style={{ width: W_NUM }}></div>
+                            <div style={{ width: W_NUM }}></div>
+                            <div style={{ width: W_NUM }}></div>
+                            {/* gap + table3 */}
+                            <div style={{ width: 8 }}></div>
                             <div style={{ width: W_NUM }}>Weight</div>
                             <div style={{ width: W_NUM }}>Total Score</div>
                         </div>
