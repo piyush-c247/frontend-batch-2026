@@ -1,0 +1,45 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+}
+
+/* LEFT */
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.backBtn {
+  background-color: #2a4365;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* RIGHT */
+.right {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #6b7280;
+  gap: 6px;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.separator {
+  color: #9ca3af;
+}
+
+.active {
+  font-weight: 600;
+  color: #111827;
+}

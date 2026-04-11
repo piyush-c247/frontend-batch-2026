@@ -1,9 +1,15 @@
-import React from 'react'
+import { AuditTable } from "@/components/AuditTable";
+import { Header } from "@/components/Layout/Header";
+import { TitleBar } from "@/components/Layout/TitleBar";
+import { Toolbar } from "@/components/Layout/Toolbar";
 
-const page = () => {
+export default function Home() {
   return (
-    <div>page</div>
-  )
+    <div style={{ padding: "20px" }}>
+      <Header />
+      <Toolbar />
+      <TitleBar />
+      <AuditTable />
+    </div>
+  );
 }
-
-export default page

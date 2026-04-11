@@ -1,0 +1,80 @@
+@use "@/styles/variables" as *;
+
+.wrapper {
+  overflow-x: auto;
+}
+
+/* TABLE ROOT */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid #d1d5db;
+    padding: 6px 8px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  th {
+    background: #f9fafb;
+    font-weight: 600;
+  }
+}
+
+/* GROUP HEADERS */
+.group {
+  background-color: #e5e9ef;
+  font-weight: 700;
+  border-bottom: 2px solid #cfd6df;
+}
+
+/* CATEGORY COLUMN */
+.category {
+  background-color: #2a4365 !important;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  min-width: 120px;
+}
+
+/* SECTION COLUMN */
+.sectionCell {
+  background-color: #eef1f4;
+  text-align: left;
+  font-weight: 500;
+  min-width: 180px;
+}
+
+/* STRIPING */
+.striped td:not(.category):not(.sectionCell) {
+  background-color: #f5f7fa;
+}
+
+/* COLUMN GROUP SEPARATORS */
+.table td:nth-child(9),
+.table th:nth-child(9) {
+  border-right: 2px solid #cfd6df;
+}
+
+.table td:nth-child(13),
+.table th:nth-child(13) {
+  border-right: 2px solid #cfd6df;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #f0f3f7;
+  font-weight: 600;
+  border-top: 2px solid #cfd6df;
+}
+
+/* FINAL SCORE */
+.finalScore {
+  background-color: #e2e8f0;
+  font-weight: 700;
+  text-align: right;
+}
