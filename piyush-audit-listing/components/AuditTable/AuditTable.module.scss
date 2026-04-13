@@ -60,14 +60,50 @@
 
 /* ─── MINI TABLE ─── */
 .miniTable {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   table-layout: fixed;
   flex-shrink: 0;
   background-color: $bg-white;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid $border-light;
 
   th,
   td {
     @include table-cell-base;
+    border-top: none;
+    border-left: none;
+    border-right: 1px solid $border-light;
+    border-bottom: 1px solid $border-light;
+  }
+
+  /* last rowspan cell — right+bottom covered by table outer border */
+  td[rowspan]:last-child {
+    border-right: none;
+    border-bottom: none;
+  }
+
+  /* non-last rowspan cells — keep right border, only remove bottom */
+  td[rowspan]:not(:last-child) {
+    border-right: 1px solid $border-light;
+    border-bottom: none;
+  }
+
+  /* last row non-rowspan cells — bottom covered by table outer border */
+  tr:last-child td:not([rowspan]) {
+    border-bottom: none;
+  }
+
+  /* tables with no rowspan — last column right border removed */
+  tbody:not(:has(td[rowspan])) td:last-child,
+  tbody:not(:has(td[rowspan])) th:last-child {
+    border-right: none;
+  }
+
+  /* header last column */
+  th:last-child {
+    border-right: none;
   }
 }
 

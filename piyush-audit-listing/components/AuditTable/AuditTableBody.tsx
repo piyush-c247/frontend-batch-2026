@@ -40,7 +40,7 @@ export const AuditTableBody = ({
             </table>
 
             {/* TABLE 2 */}
-            <table className={styles.miniTable} style={{ width: W_NUM * 5 }}>
+            <table className={styles.miniTable} data-cols="5" style={{ width: W_NUM * 5 }}>
                 <tbody>
                     {section.section_type.map((row, i) => (
                         <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
