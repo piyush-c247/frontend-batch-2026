@@ -6,7 +6,6 @@ import { getAllSections } from "@/utils/normalizeData";
 import { formatNumber, formatPercent } from "@/utils/format";
 import { AuditTableHeader } from "./AuditTableHeader";
 import { AuditTableBody } from "./AuditTableBody";
-import { W_NUM } from "./constants";
 
 export const AuditTable = () => {
     const sections = getAllSections(auditData);

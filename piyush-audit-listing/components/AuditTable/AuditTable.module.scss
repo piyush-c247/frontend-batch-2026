@@ -1,7 +1,7 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-/* ─── OUTER CONTAINER ─── */
+/* OUTER CONTAINER */
 .outerWrapper {
   background-color: $bg-white;
   border: 1px solid $border-light;
@@ -9,7 +9,7 @@
   padding: 0 $padding-outer;
 }
 
-/* ─── MAIN HEADER CONTAINER ─── */
+/* MAIN HEADER CONTAINER */
 .mainHeaderContainer {
   display: flex;
   gap: $gap-tables;
@@ -52,13 +52,13 @@
   color: $text-red !important;
 }
 
-/* ─── CATEGORY ROW ─── */
+/* CATEGORY ROW */
 .categoryRow {
   @include flex-row($gap-tables);
   margin-bottom: 0;
 }
 
-/* ─── MINI TABLE ─── */
+/* MINI TABLE */
 .miniTable {
   border-collapse: separate;
   border-spacing: 0;
@@ -95,7 +95,7 @@
     border-bottom: none;
   }
 
-  /* tables with no rowspan — last column right border removed */
+  /* tables with no rowspan — last column right border removal */
   tbody:not(:has(td[rowspan])) td:last-child,
   tbody:not(:has(td[rowspan])) th:last-child {
     border-right: none;
@@ -107,7 +107,7 @@
   }
 }
 
-/* ─── HEADER CELLS ─── */
+/* HEADER CELLS */
 .th {
   background-color: $bg-header-cell !important;
   font-weight: 600;
@@ -127,7 +127,7 @@
   text-align: center;
 }
 
-/* ─── CATEGORY CELL ─── */
+/* CATEGORY CELL */
 .category {
   background-color: $navy-dark !important;
   color: $bg-white !important;
@@ -137,7 +137,7 @@
   text-transform: capitalize;
 }
 
-/* ─── SECTION CELL ─── */
+/* SECTION CELL */
 .sectionCell {
   text-align: left !important;
   padding-left: 10px !important;
@@ -147,12 +147,12 @@
   text-overflow: ellipsis;
 }
 
-/* ─── NUMERIC CELLS ─── */
+/* NUMERIC CELLS */
 .numCell {
   color: $text-secondary;
 }
 
-/* ─── ROW STRIPE ─── */
+/*  ROW STRIPE  */
 .plain td {
   background-color: $bg-white;
 }
@@ -161,13 +161,13 @@
   background-color: $bg-stripe !important;
 }
 
-/* ─── CATEGORIES WRAPPER ─── */
+/* CATEGORIES WRAPPER */
 .categoriesWrapper {
   @include flex-column($gap-categories);
   padding: $padding-section;
 }
 
-/* ─── TOTALS BLOCK ─── */
+/* TOTALS BLOCK */
 .totalsBlock {
   @include flex-end;
   background-color: transparent;
@@ -206,7 +206,7 @@
   border-bottom: 1px solid $border-medium;
 }
 
-/* ─── OVERALL SAFETY SCORE BAR ─── */
+/* OVERALL SAFETY SCORE BAR  */
 .safetyScoreBar {
   @include flex-end;
   align-items: center;
@@ -228,4 +228,64 @@
   font-size: $font-size-score;
   font-weight: 800;
   color: $text-primary;
+}
+
+/* MINI TABLE WIDTHS */
+.table1 {
+  @include width(335px);
+}
+
+.table2 {
+  @include width(375px);
+}
+
+.table3 {
+  @include width(150px);
+}
+
+/* COLUMN WIDTHS */
+.colCategory {
+  @include width(100px);
+}
+
+.colSection {
+  @include width(160px);
+}
+
+.colNum {
+  @include width(75px);
+}
+
+/* HEADER GROUP WIDTHS */
+.headerOverview {
+  @include width(335px);
+}
+
+.headerScoring {
+  @include width(533px);
+}
+
+.headerAdjusted {
+  @include width(308px);
+}
+
+/* HEADER CELL WIDTHS */
+.wNum {
+  @include width(75px);
+}
+
+.wNum2 {
+  @include width(150px);
+}
+
+.wSection {
+  @include width(160px);
+}
+
+.wCat {
+  @include width(100px);
+}
+
+.wGap {
+  @include width(8px);
 }

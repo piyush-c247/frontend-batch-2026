@@ -3,7 +3,6 @@
 import styles from "./AuditTable.module.scss";
 import { formatNumber, formatPercent } from "@/utils/format";
 import { Section } from "@/types/auditTable";
-import { W_CATEGORY, W_SECTION, W_NUM } from "./constants";
 
 export const AuditTableBody = ({
     section,
@@ -18,11 +17,11 @@ export const AuditTableBody = ({
         <div className={styles.categoryRow}>
 
             {/* TABLE 1 */}
-            <table className={styles.miniTable} style={{ width: W_CATEGORY + W_SECTION + W_NUM }}>
+            <table className={`${styles.miniTable} ${styles.table1}`}>
                 <colgroup>
-                    <col style={{ width: W_CATEGORY }} />
-                    <col style={{ width: W_SECTION }} />
-                    <col style={{ width: W_NUM }} />
+                    <col className={styles.colCategory} />
+                    <col className={styles.colSection} />
+                    <col className={styles.colNum} />
                 </colgroup>
                 <tbody>
                     {section.section_type.map((row, i) => (
@@ -40,7 +39,7 @@ export const AuditTableBody = ({
             </table>
 
             {/* TABLE 2 */}
-            <table className={styles.miniTable} data-cols="5" style={{ width: W_NUM * 5 }}>
+            <table className={`${styles.miniTable} ${styles.table2}`} data-cols="5">
                 <tbody>
                     {section.section_type.map((row, i) => (
                         <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
@@ -65,7 +64,7 @@ export const AuditTableBody = ({
             </table>
 
             {/* TABLE 3 */}
-            <table className={styles.miniTable} style={{ width: W_NUM * 2 }}>
+            <table className={`${styles.miniTable} ${styles.table3}`}>
                 <tbody>
                     {section.section_type.map((_, i) => (
                         <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
@@ -85,7 +84,7 @@ export const AuditTableBody = ({
             </table>
 
             {/* TABLE 4 */}
-            <table className={styles.miniTable} style={{ width: W_NUM * 2 }}>
+            <table className={`${styles.miniTable} ${styles.table3}`}>
                 <tbody>
                     {section.section_type.map((row, i) => (
                         <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
@@ -103,7 +102,7 @@ export const AuditTableBody = ({
             </table>
 
             {/* TABLE 5 */}
-            <table className={styles.miniTable} style={{ width: W_NUM * 2 }}>
+            <table className={`${styles.miniTable} ${styles.table3}`}>
                 <tbody>
                     {section.section_type.map((row, i) => (
                         <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
