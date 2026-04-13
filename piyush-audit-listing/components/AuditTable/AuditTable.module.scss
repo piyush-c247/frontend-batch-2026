@@ -34,13 +34,14 @@
   display: flex;
   font-size: $font-size-xs;
   font-weight: 500;
-  color: $border-medium;
+  color: $text-secondary;
 }
 
 .bottomLabels {
   display: flex;
   font-size: $font-size-xs;
   color: $text-secondary;
+  font-weight: 500;
 
   div {
     @include flex-center;
