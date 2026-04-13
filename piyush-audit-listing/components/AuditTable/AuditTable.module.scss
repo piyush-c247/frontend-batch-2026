@@ -33,14 +33,13 @@
 .subHeaderRow {
   display: flex;
   font-size: $font-size-xs;
-  font-weight: 600;
+  font-weight: 500;
   color: $border-medium;
 }
 
 .bottomLabels {
   display: flex;
   font-size: $font-size-xs;
-  font-weight: 600;
   color: $text-secondary;
 
   div {
@@ -57,11 +56,6 @@
   @include flex-row($gap-tables);
   margin-bottom: 0;
 }
-
-/* ─── UNUSED — kept for reference ─── */
-.groupLabelOverview { width: 335px; text-align: center; flex-shrink: 0; }
-.groupLabelScoring  { width: calc(75px * 7 + 8px); text-align: center; flex-shrink: 0; }
-.groupLabelAdjusted { width: calc(75px * 4 + 8px); text-align: center; flex-shrink: 0; }
 
 /* ─── MINI TABLE ─── */
 .miniTable {
