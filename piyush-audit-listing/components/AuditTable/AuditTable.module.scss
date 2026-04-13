@@ -25,7 +25,7 @@
   font-weight: 700;
   color: $navy-dark;
   padding: $gap-tables 0;
-  border-bottom: 3px solid $border-light;
+  border-bottom: 2px solid $border-light;
   margin-bottom: 6px;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .redText {
-  color: $text-red !important;
+  color: $text-red ;
 }
 
 /* CATEGORY ROW */
@@ -108,23 +108,23 @@
 
 /* HEADER CELLS */
 .th {
-  background-color: $bg-header-cell !important;
+  background-color: $bg-header-cell;
   font-weight: 600;
   font-size: $font-size-cell;
-  color: $text-secondary !important;
+  color: $text-secondary;
 }
 
 .thRed {
-  color: $text-red !important;
+  color: $text-red;
 }
 
-.thSub {
-  background-color: $bg-white !important;
-  font-weight: 700;
-  font-size: $font-size-base;
-  color: $text-primary !important;
-  text-align: center;
-}
+// .thSub {
+//   background-color: $bg-white;
+//   font-weight: 700;
+//   font-size: $font-size-base;
+//   color: $text-primary ;
+//   text-align: center;
+// }
 
 /* CATEGORY CELL */
 .category {
@@ -157,7 +157,7 @@
 }
 
 .striped td {
-  background-color: $bg-stripe !important;
+  background-color: $bg-stripe ;
 }
 
 /* CATEGORIES WRAPPER */
@@ -210,10 +210,12 @@
   @include flex-end;
   align-items: center;
   gap: $gap-tables;
-  padding: 14px 0;
-  background-color: transparent;
-  border-top: 1px solid $border-light;
-  margin-top: $gap-categories;
+  padding: 14px 10px;
+  background-color: $bg-stripe;
+  border: 1px solid $border-light;
+  border-radius: 6px;
+  margin: $gap-categories 0px;
+  margin-right: $gap-categories;
 }
 
 .safetyLabel {

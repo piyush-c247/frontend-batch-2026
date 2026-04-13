@@ -9,8 +9,8 @@ import { AuditTableBody } from "./AuditTableBody";
 
 export const AuditTable = () => {
     const sections = getAllSections(auditData);
-    const mainSections = sections.filter((s) => s.section !== "bonus");
-    const bonusSection = sections.find((s) => s.section === "bonus");
+    const mainSections = sections.filter((sec) => sec.section !== "bonus");
+    const bonusSection = sections.find((sec) => sec.section === "bonus");
 
     const totalScore    = formatNumber(auditData.sections_total.all_score_total);
     const totalWeight   = formatPercent(auditData.sections_total.adjustment_weight_section_total);
