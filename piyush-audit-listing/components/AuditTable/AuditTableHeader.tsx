@@ -28,7 +28,8 @@ export const AuditTableHeader = () => {
                         <div style={{ width: W_NUM }}>% of Total</div>
                         <div style={{ width: W_NUM }}>Section Total</div>
                         <div style={{ width: 8 }}></div>
-                        <div style={{ width: W_NUM * 2 }}></div>
+                        <div style={{ width: W_NUM }}>Weight</div>
+                        <div style={{ width: W_NUM }}>Total Score</div>
                     </div>
 
                     <div className={styles.bottomLabels}>
@@ -38,8 +39,8 @@ export const AuditTableHeader = () => {
                         <div style={{ width: W_NUM }}></div>
                         <div style={{ width: W_NUM }}></div>
                         <div style={{ width: 8 }}></div>
-                        <div style={{ width: W_NUM }}>Weight</div>
-                        <div style={{ width: W_NUM }}>Total Score</div>
+                        <div style={{ width: W_NUM }}></div>
+                        <div style={{ width: W_NUM }}></div>
                     </div>
                 </div>
             </div>
