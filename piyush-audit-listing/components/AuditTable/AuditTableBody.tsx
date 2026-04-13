@@ -84,33 +84,55 @@ export const AuditTableBody = ({
             </table>
 
             {/* TABLE 4 */}
-            <table className={`${styles.miniTable} ${styles.table3}`}>
+            <table className={`${styles.miniTable} ${styles.table3} ${isBonus ? styles.emptyTable : ""}`}>
                 <tbody>
-                    {section.section_type.map((row, i) => (
-                        <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
-                            <td className={styles.numCell}>
-                                {formatNumber(row.adjustment_weight_type)}
-                            </td>
-                            {i === 0 && (
-                                <td rowSpan={rowCount} className={styles.numCell}>
-                                    {formatNumber(section.adjustment_weight_section)}
+                    {isBonus
+                        ? section.section_type.map((_, i) => (
+                            <tr
+                                key={i}
+                                className={i % 2 !== 0 ? styles.striped : styles.plain}
+                            >
+                                <td className={styles.numCell}></td>
+                                {i === 0 && (
+                                    <td rowSpan={rowCount} className={styles.numCell}></td>
+                                )}
+                            </tr>
+                        ))
+                        : section.section_type.map((row, i) => (
+                            <tr
+                                key={i}
+                                className={i % 2 !== 0 ? styles.striped : styles.plain}
+                            >
+                                <td className={styles.numCell}>
+                                    {formatNumber(row.adjustment_weight_type)}
                                 </td>
-                            )}
-                        </tr>
-                    ))}
+
+                                {i === 0 && (
+                                    <td rowSpan={rowCount} className={styles.numCell}>
+                                        {formatNumber(section.adjustment_weight_section)}
+                                    </td>
+                                )}
+                            </tr>
+                        ))}
                 </tbody>
             </table>
 
             {/* TABLE 5 */}
             <table className={`${styles.miniTable} ${styles.table3}`}>
                 <tbody>
-                    {section.section_type.map((row, i) => (
+                    {section.section_type.map((_, i) => (
                         <tr key={i} className={i % 2 !== 0 ? styles.striped : styles.plain}>
-                            <td className={styles.numCell}>
-                                {formatNumber(row.adjustment_score_type)}
-                            </td>
+                            {!isBonus && (
+                                <td className={styles.numCell}>
+                                    {formatNumber(section.section_type[i].adjustment_score_type)}
+                                </td>
+                            )}
                             {i === 0 && (
-                                <td rowSpan={rowCount} className={styles.numCell}>
+                                <td
+                                    rowSpan={rowCount}
+                                    colSpan={isBonus ? 2 : 1}
+                                    className={styles.numCell}
+                                >
                                     {isBonus
                                         ? formatNumber(section.adjustment_score_section)
                                         : formatNumber(
@@ -123,7 +145,6 @@ export const AuditTableBody = ({
                     ))}
                 </tbody>
             </table>
-
         </div>
     );
 };

@@ -290,3 +290,13 @@
 .wGap {
   @include width(8px);
 }
+
+.emptyTable {
+  border: none !important;
+
+  td,
+  tr {
+    border: none !important;
+    background: transparent !important;
+  }
+}
