@@ -1,52 +1,51 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
 .header {
-  display: flex;
+  @include flex-row($gap-tables);
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #ffffff;
+  border-bottom: 1px solid $border-light;
+  background-color: $bg-white;
 }
 
 /* LEFT */
 .left {
-  display: flex;
-  align-items: center;
+  @include flex-center;
 }
 
 .logo {
   font-weight: 700;
-  font-size: 18px;
-  color: #2a4365;
+  font-size: $font-size-score; 
+  color: $navy-dark;
   letter-spacing: 1px;
 }
 
 /* RIGHT */
 .right {
-  display: flex;
+  @include flex-row(20px); 
   align-items: center;
-  gap: 20px;
 }
 
 .infoBlock {
-  display: flex;
-  flex-direction: column;
-  font-size: 11px;
+  @include flex-column;
+  font-size: $font-size-xs;
   text-align: right;
 }
 
 .label {
-  color: #6b7280;
+  color: $text-secondary; 
 }
 
 .value {
   font-weight: 500;
-  color: #111827;
+  color: $text-primary;
 }
 
 /* PROFILE */
 .profile {
   padding-left: 10px;
-  border-left: 1px solid #e5e7eb;
+  border-left: 1px solid $border-light;
   font-weight: 500;
   cursor: pointer;
 }

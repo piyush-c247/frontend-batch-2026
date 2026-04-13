@@ -1,38 +1,41 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
 .titleBar {
-  display: flex;
+  @include flex-row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #0d2645;  
-  border-top: 1px solid #0a1f38;
-  border-bottom: 1px solid #0a1f38;
+  padding: 10px 10px;
+  background-color: $navy-dark;
+  border-top: 1px solid $primary-blue;
+  border-bottom: 1px solid $primary-blue;
+  border-radius: 6px 6px 0 0;
 }
 
 /* LEFT */
 .left {
-  display: flex;
-  align-items: center;
+  @include flex-center;
+  justify-content: flex-start;
 }
 
 .title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0;
-  color: #ffffff;   
+  color: $bg-white;
 }
 
 /* RIGHT */
 .right {
-  display: flex;
-  align-items: center;
+  @include flex-center;
+  justify-content: flex-end;
 }
 
 .badge {
-  display: flex;
-  align-items: center;
+  @include flex-center;
   gap: 6px;
   background-color: #16a34a;
-  color: #ffffff;
+  color: $bg-white;
   padding: 5px 12px;
   font-size: 12px;
   border-radius: 20px;
