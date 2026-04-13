@@ -1,34 +1,36 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
 .toolbar {
-  display: flex;
+  @include flex-row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
-  background-color: #ffffff;
+  padding: 10px 0;
+  background-color: $bg-white;
 }
 
 /* LEFT */
 .left {
-  display: flex;
-  align-items: center;
+  @include flex-center;
 }
 
 .backBtn {
-  background-color: #2a4365;
-  color: #ffffff;
+  background-color: $navy-dark;
+  color: $bg-white;
   border: none;
-  padding: 6px 12px;
-  font-size: 12px;
-  border-radius: 4px;
+  padding: 6px 12px; 
+  font-size: $font-size-base;
+  border-radius: 4px; 
   cursor: pointer;
 }
 
 /* RIGHT */
 .right {
-  display: flex;
+  @include flex-row(6px);
   align-items: center;
-  font-size: 13px;
-  color: #6b7280;
-  gap: 6px;
+
+  font-size: $font-size-label;
+  color: $text-secondary;
 }
 
 .link {
@@ -36,10 +38,10 @@
 }
 
 .separator {
-  color: #9ca3af;
+  color: $border-medium; 
 }
 
 .active {
   font-weight: 600;
-  color: #111827;
+  color: $text-primary;
 }
