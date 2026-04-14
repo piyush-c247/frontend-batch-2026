@@ -5,7 +5,7 @@
   @include flex-row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: $gap-categories 0;
   background-color: $bg-white;
 }
 
@@ -18,7 +18,7 @@
   background-color: $navy-dark;
   color: $bg-white;
   border: none;
-  padding: 6px 12px;
+  padding: $spacing-6px $font-size-base;
   @include font-size($font-size-base);
   border-radius: 4px;
   cursor: pointer;
