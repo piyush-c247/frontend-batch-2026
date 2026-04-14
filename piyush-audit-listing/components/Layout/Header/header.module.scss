@@ -15,30 +15,30 @@
 }
 
 .logo {
-  font-weight: 700;
-  font-size: $font-size-score; 
+  @include font-weight(700);
+  @include font-size($font-size-score);
   color: $navy-dark;
   letter-spacing: 1px;
 }
 
 /* RIGHT */
 .right {
-  @include flex-row(20px); 
+  @include flex-row(20px);
   align-items: center;
 }
 
 .infoBlock {
   @include flex-column;
-  font-size: $font-size-xs;
+  @include font-size($font-size-xs);
   text-align: right;
 }
 
 .label {
-  color: $text-secondary; 
+  color: $text-secondary;
 }
 
 .value {
-  font-weight: 500;
+  @include font-weight(500);
   color: $text-primary;
 }
 
@@ -46,6 +46,6 @@
 .profile {
   padding-left: 10px;
   border-left: 1px solid $border-light;
-  font-weight: 500;
+  @include font-weight(500);
   cursor: pointer;
 }

@@ -18,9 +18,9 @@
   background-color: $navy-dark;
   color: $bg-white;
   border: none;
-  padding: 6px 12px; 
-  font-size: $font-size-base;
-  border-radius: 4px; 
+  padding: 6px 12px;
+  @include font-size($font-size-base);
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -29,7 +29,7 @@
   @include flex-row(6px);
   align-items: center;
 
-  font-size: $font-size-label;
+  @include font-size($font-size-label);
   color: $text-secondary;
 }
 
@@ -38,10 +38,10 @@
 }
 
 .separator {
-  color: $border-medium; 
+  color: $border-medium;
 }
 
 .active {
-  font-weight: 600;
+  @include font-weight(600);
   color: $text-primary;
 }

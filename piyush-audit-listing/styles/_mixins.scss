@@ -36,3 +36,11 @@
 @mixin width($value) {
   width: $value;
 }
+
+@mixin font-size($size) {
+  font-size: $size;
+}
+
+@mixin font-weight($weight) {
+  font-weight: $weight;
+}
