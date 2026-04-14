@@ -11,8 +11,7 @@
 
 /* MAIN HEADER CONTAINER */
 .mainHeaderContainer {
-  display: flex;
-  gap: $gap-tables;
+  @include flex-row($gap-tables);
   text-align: center;
 }
 
@@ -21,26 +20,26 @@
 }
 
 .topLabel {
-  font-size: $font-size-title;
-  font-weight: 700;
+  @include font-size($font-size-title);
+  @include font-weight(700);
   color: $navy-dark;
   padding: $gap-tables 0;
   border-bottom: 2px solid $border-light;
-  margin-bottom: 6px;
+  margin-bottom: $spacing-6px;
 }
 
 .subHeaderRow {
-  display: flex;
-  font-size: $font-size-xs;
-  font-weight: 500;
+  @include flex-row;
+  @include font-size($font-size-xs);
+  @include font-weight(500);
   color: $text-secondary;
 }
 
 .bottomLabels {
-  display: flex;
-  font-size: $font-size-xs;
+  @include flex-row;
+  @include font-size($font-size-xs);
+  @include font-weight(500);
   color: $text-secondary;
-  font-weight: 500;
 
   div {
     @include flex-center;
@@ -48,7 +47,7 @@
 }
 
 .redText {
-  color: $text-red ;
+  color: $text-red;
 }
 
 /* CATEGORY ROW */
@@ -64,7 +63,7 @@
   table-layout: fixed;
   flex-shrink: 0;
   background-color: $bg-white;
-  border-radius: 6px;
+  border-radius: $spacing-6px;
   overflow: hidden;
   border: 1px solid $border-light;
 
@@ -97,7 +96,7 @@
   /* tables with no rowspan — last column right border removal */
   tbody:not(:has(td[rowspan])) td:last-child,
   tbody:not(:has(td[rowspan])) th:last-child {
-    border-right: none;
+    border-right: none ;
   }
 
   /* header last column */
@@ -109,8 +108,8 @@
 /* HEADER CELLS */
 .th {
   background-color: $bg-header-cell;
-  font-weight: 600;
-  font-size: $font-size-cell;
+  @include font-weight(600);
+  @include font-size($font-size-cell);
   color: $text-secondary;
 }
 
@@ -122,17 +121,17 @@
 .category {
   background-color: $navy-dark !important;
   color: $bg-white !important;
-  font-weight: 600;
-  font-size: $font-size-base;
+  @include font-weight(600);
+  @include font-size($font-size-base);
   text-align: center;
   text-transform: capitalize;
 }
 
 /* SECTION CELL */
 .sectionCell {
-  text-align: left ;
-  padding-left: 10px ;
-  font-weight: 400;
+  text-align: left;
+  padding-left: $gap-categories;
+  @include font-weight(400);
   color: $text-secondary;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -149,7 +148,7 @@
 }
 
 .striped td {
-  background-color: $bg-stripe ;
+  background-color: $bg-stripe;
 }
 
 /* CATEGORIES WRAPPER */
@@ -162,35 +161,35 @@
 .totalsBlock {
   @include flex-end;
   background-color: transparent;
-  padding: 0px 16px;
+  padding: 0px $font-size-score;
 }
 
 .totalsInner {
-  width: calc(75px * 4 + #{$gap-tables});
+  @include width(calc(75px * 4 + #{$gap-tables}));
   border-top: 1px solid $border-medium;
   border-bottom: 1px solid $border-light;
-  margin-bottom: 6px;
+  margin-bottom: $spacing-6px;
   background-color: $bg-white;
 }
 
 .totalsTitleRow {
   text-align: center;
-  font-weight: 600;
-  font-size: $font-size-base;
+  @include font-weight(600);
+  @include font-size($font-size-base);
   color: $text-secondary;
-  padding: 6px 0;
+  padding: $spacing-6px 0;
   border-bottom: 1px solid $border-light;
 }
 
 .totalsValuesRow {
-  display: flex;
+  @include flex-row;
   align-items: center;
 }
 
 .totalsCell {
   flex: 1;
   text-align: center;
-  font-size: $font-size-base;
+  @include font-size($font-size-base);
   //font-weight: 600;
   color: $text-primary;
   padding: $gap-tables 0;
@@ -202,24 +201,24 @@
   @include flex-end;
   align-items: center;
   gap: $gap-tables;
-  padding: 14px 10px;
+  padding: $font-size-title $gap-categories;
   background-color: $bg-stripe;
   border: 1px solid $border-light;
-  border-radius: 6px;
+  border-radius: $spacing-6px;
   margin: $gap-categories 0px;
   margin-right: $gap-categories;
 }
 
 .safetyLabel {
-  font-size: $font-size-label;
-  font-weight: 600;
-  padding: 0px 16px;
+  @include font-size($font-size-label);
+  @include font-weight(600);
+  padding: 0px $padding-outer;
   color: $text-secondary;
 }
 
 .safetyValue {
-  font-size: $font-size-score;
-  font-weight: 800;
+  @include font-size($font-size-score);
+  @include font-weight(800);
   color: $text-primary;
 }
 
