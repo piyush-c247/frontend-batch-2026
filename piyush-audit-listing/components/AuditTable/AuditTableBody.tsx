@@ -3,6 +3,7 @@
 import styles from "./AuditTable.module.scss";
 import { formatNumber, formatPercent } from "@/utils/format";
 import { Section } from "@/types/auditTable";
+import { AUDIT_TABLE } from "./constants";
 
 export const AuditTableBody = ({
     section,
@@ -51,7 +52,7 @@ export const AuditTableBody = ({
                             </td>
                             <td className={styles.numCell}>{formatNumber(row.type_total)}</td>
                             <td className={styles.numCell}>
-                                {isBonus ? "N/A" : formatPercent(row.total_percentage)}
+                                {isBonus ? AUDIT_TABLE.NA : formatPercent(row.total_percentage)}
                             </td>
                             {i === 0 && (
                                 <td rowSpan={rowCount} className={styles.numCell}>
