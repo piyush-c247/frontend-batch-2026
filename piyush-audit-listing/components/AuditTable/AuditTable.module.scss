@@ -118,14 +118,6 @@
   color: $text-red;
 }
 
-// .thSub {
-//   background-color: $bg-white;
-//   font-weight: 700;
-//   font-size: $font-size-base;
-//   color: $text-primary ;
-//   text-align: center;
-// }
-
 /* CATEGORY CELL */
 .category {
   background-color: $navy-dark !important;
@@ -138,8 +130,8 @@
 
 /* SECTION CELL */
 .sectionCell {
-  text-align: left !important;
-  padding-left: 10px !important;
+  text-align: left ;
+  padding-left: 10px ;
   font-weight: 400;
   color: $text-secondary;
   overflow: hidden;
@@ -292,11 +284,11 @@
 }
 
 .emptyTable {
-  border: none !important;
+  border: none ;
 
   td,
   tr {
-    border: none !important;
-    background: transparent !important;
+    border: none ;
+    background: transparent;
   }
 }
