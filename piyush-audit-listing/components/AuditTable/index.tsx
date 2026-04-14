@@ -1,24 +1,20 @@
 "use client";
 
 import styles from "./AuditTable.module.scss";
-import { auditData } from "@/data/mockData";
-import { getAllSections } from "@/utils/normalizeData";
-import { formatNumber, formatPercent } from "@/utils/format";
 import { AuditTableHeader } from "./AuditTableHeader";
 import { AuditTableBody } from "./AuditTableBody";
 import { AUDIT_TABLE_FOOTER } from "./constants";
+import { useAuditTable } from "./useAuditTable";
 
 export const AuditTable = () => {
-    const sections = getAllSections(auditData);
-    const mainSections = sections.filter((sec) => sec.section !== AUDIT_TABLE_FOOTER.BONUS_KEY);
-    const bonusSection = sections.find((sec) => sec.section === AUDIT_TABLE_FOOTER.BONUS_KEY);
-
-    const totalScore = formatNumber(auditData.sections_total.all_score_total);
-    const totalWeight = formatPercent(auditData.sections_total.adjustment_weight_section_total);
-    const totalAdjusted = formatNumber(
-        (auditData.sections_total.adjustment_weight_section_total / 100) *
-        auditData.sections_total.all_score_total
-    );
+    const {
+        mainSections,
+        bonusSection,
+        totalScore,
+        totalWeight,
+        totalAdjusted,
+        overallSafetyScore,
+    } = useAuditTable();
 
     return (
         <div className={styles.outerWrapper}>
@@ -67,7 +63,7 @@ export const AuditTable = () => {
                     {AUDIT_TABLE_FOOTER.OVERALL_SAFETY_SCORE}
                 </span>
                 <span className={styles.safetyValue}>
-                    {formatNumber(auditData.overall_safety_score_total)}
+                    {overallSafetyScore}
                 </span>
             </div>
 
