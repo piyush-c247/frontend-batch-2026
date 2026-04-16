@@ -1,0 +1,74 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+
+  background-color: $color-white;
+  border-bottom: 1px solid $color-border;
+
+  padding: 0 $spacing-20;
+
+  @include flex(center, space-between);
+
+  z-index: 1000;
+}
+
+.left {
+  @include flex(center, flex-start);
+}
+
+.menuIcon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.right {
+  @include flex(center, flex-end);
+  gap: $spacing-16;
+}
+
+.timeBlock {
+  text-align: right;
+  border-right: 1px solid $color-border ;
+  padding-right: $spacing-6;
+
+  .label {
+    font-size: $font-12;
+    color: $color-text-secondary;
+  }
+
+  .value {
+    font-size: $font-14;
+    font-weight: 600;
+  }
+}
+
+.timezone {
+  font-size: $font-12;
+  text-align: right;
+  color: $color-text-secondary;
+  border-right: 1px solid $color-border ;
+  padding-right: $spacing-6;
+}
+
+.user {
+  @include flex(center, center);
+  gap: $spacing-8;
+}
+
+.avatar {
+  background-color: $avatar-bg;
+  color: $color-text-primary;
+
+  border-radius: 8%;
+  font-size: $font-12;
+
+  @include size(32px);
+  @include flex(center, center);
+}

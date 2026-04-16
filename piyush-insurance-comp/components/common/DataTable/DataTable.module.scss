@@ -1,0 +1,132 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+/* Container */
+.container {
+  background: $color-white;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  margin: 20px;
+}
+
+/*  Header */
+.header {
+  background: $color-primary;
+  color: $color-white;
+
+  padding: $spacing-12 $spacing-16;
+
+  @include flex(center, space-between);
+
+  h3 {
+    margin: 0;
+    font-size: $font-16;
+    font-weight: 600;
+  }
+}
+
+/* Add Button */
+.addBtn {
+  background: $color-white;
+  color: $color-primary;
+
+  border-radius: $radius-sm;
+  border: none;
+
+  padding: $spacing-6 $spacing-10;
+
+  @include flex(center, center);
+  gap: $spacing-6;
+
+  font-size: $font-14;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  svg {
+    font-size: 12px;
+  }
+}
+
+/* Table */
+.table {
+  thead {
+    background: $color-bg-light;
+
+    th {
+      font-size: $font-14;
+      font-weight: 500;
+      color: $color-text-secondary;
+
+      padding: $spacing-10;
+      border-bottom: 1px solid $color-border;
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        font-size: $font-12;
+        padding: $spacing-10;
+        border-top: 1px solid $color-border;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        background: $color-bg-row;
+      }
+    }
+  }
+}
+
+/* ⚡ Actions */
+.actions {
+  @include flex(center, flex-start);
+  gap: $spacing-8;
+}
+
+/* Action Buttons */
+.actionBtn {
+  @include size(24px);
+  @include flex(center, center);
+
+  border-radius: 8%;
+  border: none;
+  cursor: pointer;
+
+  color: $color-white;
+
+  svg {
+    font-size: $font-12;
+  }
+}
+
+/*  Individual Colors */
+
+.rate {
+  background: $color-primary; 
+}
+
+.contacts {
+  background: $color-primary-light; 
+}
+
+.locations {
+  background: $color-primary; 
+}
+
+.edit {
+  background: $color-primary-light; 
+}
+
+.delete {
+  background: $color-white; 
+  color: $color-black;
+}
+/* Empty State */
+.empty {
+  text-align: center;
+  padding: $spacing-16;
+  color: $color-text-secondary;
+}

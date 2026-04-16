@@ -1,0 +1,37 @@
+// Flexbox
+@mixin flex($align: center, $justify: center, $direction: row) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+// Font Size
+@mixin font-size($size, $weight: normal, $line-height: normal) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+//Width
+@mixin width($value) {
+  width: $value;
+}
+
+// Height
+@mixin height($value) {
+  height: $value;
+}
+
+//Size (width + height)
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+
+// Border
+@mixin border($color, $width: 1px, $style: solid) {
+  border: $width $style $color;
+}
+
+
