@@ -7,7 +7,7 @@
   border-radius: $radius-md;
   overflow: hidden;
   border: 1px solid $color-border;
-  margin: 20px;
+  margin: 80px 20px 20px 20px;
 }
 
 /*  Header */
@@ -51,54 +51,80 @@
 
 /* Table */
 .table {
+  width: 100%;
+
   thead {
     background: $color-bg-light;
 
     th {
-      font-size: $font-14;
-      font-weight: 500;
+      font-size: $font-12;
+      font-weight: 600;
       color: $color-text-secondary;
 
-      padding: $spacing-10;
+      padding: $spacing-12 $spacing-16;
       border-bottom: 1px solid $color-border;
+
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th:last-child {
+      text-align: center; // Actions column
     }
   }
 
   tbody {
     tr {
+      height: 36px; 
+
       td {
-        font-size: $font-12;
-        padding: $spacing-10;
+        font-size: $font-10;
+        padding: $spacing-6 $spacing-12;
         border-top: 1px solid $color-border;
         vertical-align: middle;
+        color: $color-text-primary;
+      }
+
+      td:last-child {
+        text-align: center; 
       }
 
       &:hover {
-        background: $color-bg-row;
+        background: $color-bg-hover;
       }
     }
   }
 }
 
-/* ⚡ Actions */
-.actions {
-  @include flex(center, flex-start);
-  gap: $spacing-8;
+/* Align numeric columns */
+.table td:nth-child(2),
+.table td:nth-child(3),
+.table td:nth-child(4),
+.table td:nth-child(5),
+.table td:nth-child(6) {
+  text-align: left; // or right if you want strict numeric alignment
 }
 
+/* ⚡ Actions */
+.actions {
+  @include flex(center, center); 
+  gap: $spacing-10;
+}
 /* Action Buttons */
 .actionBtn {
-  @include size(24px);
+  width: 28px;
+  height: 28px;
+
   @include flex(center, center);
 
-  border-radius: 8%;
+  border-radius: 4px; 
   border: none;
   cursor: pointer;
 
   color: $color-white;
 
   svg {
-    font-size: $font-12;
+    font-size: 12px;
   }
 }
 
@@ -121,9 +147,11 @@
 }
 
 .delete {
-  background: $color-white; 
+  background: $color-white;
   color: $color-black;
+  border: 1px solid $color-border;
 }
+
 /* Empty State */
 .empty {
   text-align: center;
