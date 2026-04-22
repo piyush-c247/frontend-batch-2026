@@ -115,13 +115,13 @@
 
 /* Rounded edges (left & right of each row) */
 .table tbody tr td:first-child {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: $spacing-8;
+  border-bottom-left-radius: $spacing-8;
 }
 
 .table tbody tr td:last-child {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: $spacing-8;
+  border-bottom-right-radius: $spacing-8;
 }
 
 /* Align numeric columns */
@@ -141,8 +141,8 @@
 
 /* Action Buttons */
 .actionBtn {
-  width: 28px;
-  height: 24px;
+  @include width(28px);
+  @include height(24px);
 
   @include flex(center, center);
 
@@ -153,7 +153,7 @@
   color: $color-white;
 
   svg {
-    font-size: $font-10;
+    font-size: $font-12;
   }
 }
 
