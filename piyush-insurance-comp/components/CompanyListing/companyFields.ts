@@ -1,3 +1,5 @@
+// components/CompanyListing/companyFields.ts
+
 import { FieldConfig } from '@/components/common/DynamicForm/types';
 import { CompanyFormValues } from '@/types/companyform';
 
@@ -7,6 +9,8 @@ import { countryOptions } from '@/data/location';
 import { amBestRatingOptions } from '@/data/amBestRatings';
 
 export const companyFields: FieldConfig<CompanyFormValues>[] = [
+
+  /* Row 1 */
   {
     name: 'company_name',
     label: 'Company Name',
@@ -20,34 +24,44 @@ export const companyFields: FieldConfig<CompanyFormValues>[] = [
     type: 'text',
     required: true,
     validation: validations.location_name,
+    tooltip: fieldTooltips.location_name,
   },
+
+  /* Row 2 */
   {
     name: 'address_1',
-    label: 'Address',
+    label: 'Address 1',
     type: 'text',
     required: true,
     validation: validations.address_1,
   },
+  {
+    name: 'address_2',
+    label: 'Address 2',
+    type: 'text',
+  },
+
+  /* Row 3 */
   {
     name: 'country',
     label: 'Country',
     type: 'select',
     required: true,
     options: countryOptions,
-    validation: {
-      required: 'Country is required',
-    },
+    placeholder: 'Select Country',
+    validation: { required: 'Country is required' },
   },
   {
     name: 'state',
     label: 'Province / State',
     type: 'select',
     required: true,
-    options: [], // ⚠️ will be filled dynamically
-    validation: {
-      required: 'State is required',
-    },
+    options: [],
+    placeholder: 'Select Province/State',
+    validation: { required: 'State is required' },
   },
+
+  /* Row 4 */
   {
     name: 'city',
     label: 'City',
@@ -63,24 +77,23 @@ export const companyFields: FieldConfig<CompanyFormValues>[] = [
     validation: validations.postal_code,
   },
 
-  /* ---------- Codes Section ---------- */
-
+  /* Row 5 */
   {
     name: 'am_best_code',
     label: 'AM Best Code',
     type: 'text',
+    required: true,
     validation: validations.am_best_code,
     tooltip: fieldTooltips.am_best_code,
     uppercase: true,
   },
   {
-    name: 'am_best_rating',
-    label: 'AM Best Rating',
-    type: 'select',
-    required: true,
-    options: amBestRatingOptions,
-    validation: validations.am_best_rating,
+    name: 'am_best_profile_link',
+    label: 'AM Best Profile Link',
+    type: 'text',
   },
+
+  /* Row 6 */
   {
     name: 'ibc_code',
     label: 'IBC Code',
@@ -91,12 +104,14 @@ export const companyFields: FieldConfig<CompanyFormValues>[] = [
   },
   {
     name: 'fein_code',
-    label: 'FEIN / CIN Code',
+    label: 'FEIN / EIN Code',
     type: 'text',
     validation: validations.fein_code,
     tooltip: fieldTooltips.fein_code,
     uppercase: true,
   },
+
+  /* Row 7 */
   {
     name: 'naic_code',
     label: 'NAIC Code',
@@ -106,11 +121,35 @@ export const companyFields: FieldConfig<CompanyFormValues>[] = [
     uppercase: true,
   },
   {
+    name: 'company_profile_link',
+    label: 'Company Profile Link',
+    type: 'text',
+  },
+
+  /* Row 8 */
+  {
     name: 'aiin_code',
     label: 'AIIN Code',
     type: 'text',
     validation: validations.aiin_code,
     tooltip: fieldTooltips.aiin_code,
     uppercase: true,
+  },
+  {
+    name: 'aiin_profile_link',
+    label: 'AIIN Profile Link',
+    type: 'text',
+  },
+
+  /* Row 9 — full width */
+  {
+    name: 'am_best_rating',
+    label: 'AM Best Rating',
+    type: 'select',
+    required: true,
+    options: amBestRatingOptions,
+    placeholder: 'Select AM Best Rating',
+    validation: validations.am_best_rating,
+    fullWidth: true,              // ← spans both columns
   },
 ];

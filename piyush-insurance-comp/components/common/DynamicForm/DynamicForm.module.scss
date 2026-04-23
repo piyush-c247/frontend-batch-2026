@@ -22,11 +22,12 @@
 
     span {
       color: $color-danger;
-      margin-left: 2px;
+      //font-weight: 500;
+      margin-left: $spacing-2;
     }
   }
 
-  /* ✅ FIX: scoped inputs */
+  /* FIX: scoped inputs */
   input,
   select {
     height: 36px;
@@ -59,7 +60,7 @@
   svg {
     width: 14px;
     height: 14px;
-    color: $color-primary-light;
+    color: $color-primary;
   }
 }
 
@@ -80,16 +81,16 @@
   border: none;
   border-radius: $radius-sm;
 
-  background: $color-primary;
+  background: $color-primary-light;
   color: $color-white;
 
   font-size: $font-14;
-  font-weight: 500;
+  font-weight: 600;
 
   cursor: pointer;
 
   &:disabled {
-    background: $color-border;
+    background: $color-primary-light;
     cursor: not-allowed;
   }
 }

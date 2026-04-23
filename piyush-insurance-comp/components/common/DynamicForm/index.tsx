@@ -1,6 +1,6 @@
 'use client';
 
-import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
+import { useForm, FieldValues, SubmitHandler, PathValue } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
 import { FieldConfig, ImageField } from './types';
 import ImageUpload from '../ImageUpload';
@@ -30,26 +30,34 @@ export default function DynamicForm<FormValues extends FieldValues>({
     /* ---------- Render Field ---------- */
 
     const renderField = (field: FieldConfig<FormValues>) => {
-        const { name, label, type, options, validation, tooltip } = field;
+        const { name, label, type, options, validation, tooltip, placeholder, fullWidth, uppercase } = field;
 
         return (
-            <div className={styles.field} key={String(name)}>
+            <div
+                className={`${styles.field} ${fullWidth ? styles.fullWidth : ''}`}
+                key={String(name)}
+            >
                 <label>
-                    {label} {field.required && <span>*</span>}
+                    {label}{' '}
+                    {field.required && <span>(Required)</span>}
                     {tooltip && (
                         <span className={styles.tooltip}>
-                            <ToolTipIcon />
+                            <ToolTipIcon text={tooltip}/>
                         </span>
                     )}
                 </label>
 
                 {type === 'text' && (
-                    <Form.Control {...register(name, validation)} />
+                    <Form.Control
+                        {...register(name, validation)}
+                        placeholder={placeholder}
+                        style={uppercase ? { textTransform: 'uppercase' } : undefined}
+                    />
                 )}
 
                 {type === 'select' && (
                     <Form.Select {...register(name, validation)}>
-                        <option value="">Select</option>
+                        <option value="">{placeholder ?? 'Select'}</option>
                         {options?.map((opt) => (
                             <option key={opt.value} value={opt.value}>
                                 {opt.label}
@@ -59,14 +67,11 @@ export default function DynamicForm<FormValues extends FieldValues>({
                 )}
 
                 {errors[name] && (
-                    <p className={styles.error}>
-                        {errors[name]?.message as string}
-                    </p>
+                    <p className={styles.error}>{errors[name]?.message as string}</p>
                 )}
             </div>
         );
     };
-
     /* ---------- Image Fields ---------- */
 
     const renderImageFields = () =>
@@ -75,8 +80,8 @@ export default function DynamicForm<FormValues extends FieldValues>({
                 key={String(img.name)}
                 label={img.label}
                 onChange={(file) => {
-                    setValue(img.name, file as any);
-                }}
+  setValue(img.name, file as PathValue<FormValues, typeof img.name>);
+}}
             />
         ));
 

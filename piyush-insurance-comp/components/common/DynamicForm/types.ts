@@ -15,6 +15,8 @@ export interface FieldConfig<FormValues extends FieldValues> {
   validation?: RegisterOptions<FormValues, Path<FormValues>>;
   tooltip?: string;
   uppercase?: boolean;
+  placeholder?: string;   
+  fullWidth?: boolean; 
 }
 
 export interface ImageField<FormValues extends FieldValues> {

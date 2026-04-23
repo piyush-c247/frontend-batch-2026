@@ -9,11 +9,13 @@ export interface CompanyFormValues {
   postal_code: string;
 
   am_best_code?: string;
+  am_best_profile_link?: string;
   ibc_code?: string;
   fein_code?: string;
   naic_code?: string;
+  company_profile_link?: string;
   aiin_code?: string;
-
+  aiin_profile_link?: string;
   am_best_rating: string;
 
   logo_web?: File;
