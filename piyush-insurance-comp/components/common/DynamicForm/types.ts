@@ -17,6 +17,7 @@ export interface FieldConfig<FormValues extends FieldValues> {
   uppercase?: boolean;
   placeholder?: string;   
   fullWidth?: boolean; 
+  dependsOn?: Path<FormValues>;
 }
 
 export interface ImageField<FormValues extends FieldValues> {

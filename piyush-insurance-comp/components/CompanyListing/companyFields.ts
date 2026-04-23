@@ -56,7 +56,7 @@ export const companyFields: FieldConfig<CompanyFormValues>[] = [
     label: 'Province / State',
     type: 'select',
     required: true,
-    options: [],
+    dependsOn: 'country',
     placeholder: 'Select Province/State',
     validation: { required: 'State is required' },
   },
