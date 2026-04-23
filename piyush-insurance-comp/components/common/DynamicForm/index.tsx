@@ -27,7 +27,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
         mode: 'onChange',
     });
 
-    /* ---------- Render Field ---------- */
+    /* Render Field  */
 
     const renderField = (field: FieldConfig<FormValues>) => {
         const { name, label, type, options, validation, tooltip, placeholder, fullWidth, uppercase } = field;
@@ -42,7 +42,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
                     {field.required && <span>(Required)</span>}
                     {tooltip && (
                         <span className={styles.tooltip}>
-                            <ToolTipIcon text={tooltip}/>
+                            <ToolTipIcon text={tooltip} />
                         </span>
                     )}
                 </label>
@@ -72,7 +72,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
             </div>
         );
     };
-    /* ---------- Image Fields ---------- */
+    /* Image Fields */
 
     const renderImageFields = () =>
         imageFields?.map((img) => (
@@ -80,8 +80,8 @@ export default function DynamicForm<FormValues extends FieldValues>({
                 key={String(img.name)}
                 label={img.label}
                 onChange={(file) => {
-  setValue(img.name, file as PathValue<FormValues, typeof img.name>);
-}}
+                    setValue(img.name, file as PathValue<FormValues, typeof img.name>);
+                }}
             />
         ));
 
