@@ -2,6 +2,7 @@
 
 import { useForm, FieldValues, SubmitHandler, PathValue, useWatch } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
+import { DndContext } from '@dnd-kit/core';          // ← ADD
 import { FieldConfig, ImageField } from './types';
 import ImageUpload from '../ImageUpload';
 import styles from './DynamicForm.module.scss';
@@ -24,15 +25,10 @@ export default function DynamicForm<FormValues extends FieldValues>({
     handleSubmit,
     formState: { errors, isValid },
     setValue,
-    control,                
-  } = useForm<FormValues>({
-    mode: 'onChange',
-  });
+    control,
+  } = useForm<FormValues>({ mode: 'onChange' });
 
-  // Watch all fields that are used as dependsOn sources
   const watchedValues = useWatch({ control });
-
-
 
   const resolveOptions = (field: FieldConfig<FormValues>) => {
     if (field.dependsOn) {
@@ -42,7 +38,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
     return field.options ?? [];
   };
 
-  /* Render Field  */
+  /* ---------- Render Field ---------- */
 
   const renderField = (field: FieldConfig<FormValues>) => {
     const { name, label, type, validation, tooltip, placeholder, fullWidth, uppercase } = field;
@@ -89,18 +85,22 @@ export default function DynamicForm<FormValues extends FieldValues>({
     );
   };
 
-  /* Image Fields */
+  /* ---------- Image Fields ---------- */
 
-  const renderImageFields = () =>
-    imageFields?.map((img) => (
-      <ImageUpload
-        key={String(img.name)}
-        label={img.label}
-        onChange={(file) => {
-          setValue(img.name, file as PathValue<FormValues, typeof img.name>);
-        }}
-      />
-    ));
+  const renderImageFields = () => (
+    <DndContext>
+      {imageFields?.map((img) => (
+        <ImageUpload
+          key={String(img.name)}
+          id={String(img.name)}              // ← ADD: droppable id
+          label={img.label}
+          onChange={(file) => {
+            setValue(img.name, file as PathValue<FormValues, typeof img.name>);
+          }}
+        />
+      ))}
+    </DndContext>
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

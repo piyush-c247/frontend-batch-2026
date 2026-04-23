@@ -1,35 +1,31 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { useDroppable } from '@dnd-kit/core';
 import styles from './ImageUpload.module.scss';
 import { UploadImageIcon } from '@/components/common/UploadImageIcon';
 
 interface Props {
+  id: string;           // ← ADD: unique id for dnd-kit droppable
   label: string;
   onChange: (file: File | null) => void;
 }
 
-export default function ImageUpload({ label, onChange }: Props) {
+export default function ImageUpload({ id, label, onChange }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+
+  /* ---------- dnd-kit droppable ---------- */
+
+  const { setNodeRef } = useDroppable({ id });
 
   /* ---------- Validation ---------- */
 
   const handleFile = (file: File | null) => {
-    if (!file) {
-      onChange(null);
-      return;
-    }
+    if (!file) { onChange(null); return; }
 
     const validTypes = ['image/png', 'image/jpeg', 'image/svg+xml'];
-    const maxSize = 5 * 1024 * 1024;
-
-    const isValidType = validTypes.includes(file.type);
-    const isValidSize = file.size <= maxSize;
-
-    if (!isValidType || !isValidSize) {
-      onChange(null);
-      return;
-    }
+    if (!validTypes.includes(file.type)) { onChange(null); return; }
 
     onChange(file);
   };
@@ -40,57 +36,58 @@ export default function ImageUpload({ label, onChange }: Props) {
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    setIsDraggingOver(false);
     handleFile(e.dataTransfer.files?.[0] || null);
   };
 
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDraggingOver(true);
+  };
+
+  const handleDragLeave = () => setIsDraggingOver(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleFile(e.target.files?.[0] || null);
-    e.target.value = ''; // allow re-upload same file
+    e.target.value = '';
   };
 
   /* ---------- UI ---------- */
 
   return (
-  <div className={styles.wrapper}>
-    <label>{label}</label>
+    <div className={styles.wrapper}>
+      <label>{label}</label>
 
-    <div
-      className={styles.dropzone}
-      onClick={handleBrowse}
-      onDrop={handleDrop}
-      onDragOver={(e) => e.preventDefault()}
-    >
-      {/* 1. ICON */}
-      <div className={styles.icon}>
-        <UploadImageIcon />
+      <div
+        ref={setNodeRef}
+        className={`${styles.dropzone} ${isDraggingOver ? styles.dragOver : ''}`}
+        onClick={handleBrowse}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+      >
+        <div className={styles.icon}>
+          <UploadImageIcon />
+        </div>
+
+        <button type="button" className={styles.browseBtn}>
+          Browse files
+        </button>
+
+        <p className={styles.secondaryText}>Or</p>
+
+        <p className={styles.primaryText}>Drag your file here</p>
+
+        <span className={styles.helper}>Maximum file size: 5MB</span>
+
+        <input
+          ref={inputRef}
+          type="file"
+          hidden
+          accept=".png,.jpg,.jpeg,.svg"
+          onChange={handleChange}
+        />
       </div>
-
-      {/* 2. BUTTON */}
-      <button type="button" className={styles.browseBtn}>
-        Browse files
-      </button>
-
-      {/* 3. SECONDARY TEXT (OR) */}
-      <p className={styles.secondaryText}>Or</p>
-
-      {/* 4. PRIMARY TEXT */}
-      <p className={styles.primaryText}>
-        Drag your file here
-      </p>
-
-      {/* HELP TEXT (Optional: kept at bottom for UI clarity) */}
-      <span className={styles.helper}>
-        Maximum file size: 5MB
-      </span>
-
-      <input
-        ref={inputRef}
-        type="file"
-        hidden
-        accept=".png,.jpg,.jpeg,.svg"
-        onChange={handleChange}
-      />
     </div>
-  </div>
-);
+  );
 }

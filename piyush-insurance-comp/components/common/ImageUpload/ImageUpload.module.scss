@@ -77,3 +77,8 @@
   font-size: $font-10;
   color: $color-text-secondary;
 }
+
+.dragOver {
+  border-color: $color-primary;
+  background: rgba($color-primary, 0.04);
+}
