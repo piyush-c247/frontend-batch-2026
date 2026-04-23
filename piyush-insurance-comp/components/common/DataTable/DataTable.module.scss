@@ -146,14 +146,15 @@
 
   @include flex(center, center);
 
-  border-radius: $spacing-6;
+  border-radius: $spacing-4;
   border: none;
   cursor: pointer;
+  padding: 0px $spacing-4;
 
   color: $color-white;
 
   svg {
-    font-size: $font-12;
+    font-size: $font-10;
   }
 }
 

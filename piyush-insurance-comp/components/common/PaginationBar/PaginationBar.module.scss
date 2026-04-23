@@ -1,0 +1,78 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+    @include flex(center, flex-end);
+    gap: $spacing-16;
+    margin-top: $spacing-10;
+    padding: $spacing-10 $spacing-16;
+    background: $color-white;
+    border-top: 1px solid $color-border;
+}
+
+/* Group */
+.group {
+    @include flex(center, center);
+    gap: $spacing-6;
+
+    span {
+        font-size: $font-12;
+        color: $color-text-secondary;
+    }
+}
+
+/* Input */
+.input {
+    @include width(50px);
+    @include height(30px);
+    font-size: $font-12;
+    padding: 0 $spacing-6;
+    text-align: center;
+}
+
+/* Select */
+.select {
+    @include width(70px);
+    @include height(30px);
+    font-size: $font-12;
+}
+
+/* Range */
+.range {
+    font-size: $font-12;
+    color: $color-text-secondary;
+}
+
+/* Navigation */
+.nav {
+    @include flex(center, center);
+    gap: $spacing-6;
+}
+
+.navBtn {
+    @include width(30px);
+    @include height(30px);
+
+    @include flex(center, center);
+
+    padding: 0;
+    border: none;
+
+    svg {
+        font-size: $font-12;
+    }
+}
+
+/* Disabled (Left button) */
+.navBtnDisabled {
+    background-color: $color-disabled;
+    color: $color-text-secondary;
+    cursor: not-allowed;
+}
+
+/* Active (Right button) */
+.navBtnActive {
+    background-color: $color-primary-light;
+    color: $color-white;
+    cursor: pointer;
+}

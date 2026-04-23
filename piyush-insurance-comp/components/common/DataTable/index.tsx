@@ -8,6 +8,7 @@ import { Column } from './types';
 import { ACTIONS, TEXTS } from './constants';
 import styles from './DataTable.module.scss';
 import ActionButton from '@/components/common/ActionButton';
+import PaginationBar from '../PaginationBar';
 
 interface DataTableProps<RowData> {
   title: string;
@@ -120,7 +121,7 @@ export default function DataTable<RowData>({
             )}
           </tbody>
         </Table>
-        <hr />
+        <PaginationBar />
       </div>
     </div>
   );
