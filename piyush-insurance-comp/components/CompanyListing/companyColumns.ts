@@ -20,11 +20,7 @@ export const companyColumns: Column<Company>[] = [
     label: 'NAIC Code',
     render: (value) => (value ?? '-') as string,
   },
-//   {
-//     key: 'aiin_code',
-//     label: 'AIIN Code',
-//     render: (value) => (value ?? '-') as string,
-//   },
+
   {
     key: 'fein_code',
     label: 'FEIN Code',

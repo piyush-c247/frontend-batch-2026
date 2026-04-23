@@ -1,0 +1,66 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+/* Wrapper */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: $font-12;
+    font-weight: 500;
+    margin-bottom: $spacing-6;
+    color: $color-text-primary;
+  }
+}
+
+/* Dropzone */
+.dropzone {
+  border: 1px dashed $color-border;
+  border-radius: $radius-sm;
+
+  padding: $spacing-16;
+  background: $color-bg-light;
+
+  text-align: center;
+
+  @include flex(center, center);
+  flex-direction: column;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    border-color: $color-primary;
+    background: $color-bg-hover;
+  }
+
+  button {
+    background: transparent;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+
+    padding: $spacing-6 $spacing-10;
+    margin-bottom: $spacing-6;
+
+    font-size: $font-12;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: $font-12;
+    color: $color-text-secondary;
+  }
+
+  span {
+    font-size: 11px;
+    color: $color-text-secondary;
+    margin-top: $spacing-4;
+  }
+}
