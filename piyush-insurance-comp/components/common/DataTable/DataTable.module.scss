@@ -46,7 +46,7 @@
 
   svg {
     font-size: $font-12;
-    padding:1px;
+    padding: 1px;
     color: $color-white;
     background: $color-primary;
     border-radius: 50%;
@@ -62,9 +62,9 @@
 /* Table */
 .table {
   width: 100%;
-  border-collapse: separate;   
-  border-spacing: 0;           
-  table-layout: fixed;         
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
   margin-bottom: 0;
 
   thead {
@@ -75,7 +75,7 @@
       font-weight: 600;
       color: $color-text-secondary;
 
-      padding: $spacing-12 $spacing-12; 
+      padding: $spacing-12 $spacing-12;
       text-align: left;
       vertical-align: middle;
       border: none;
@@ -83,7 +83,7 @@
 
     th:last-child {
       text-align: center;
-      
+
     }
   }
 
@@ -92,10 +92,10 @@
 
       td {
         font-size: $font-10;
-        padding: $spacing-6 $spacing-12; 
+        padding: $spacing-6 $spacing-12;
         vertical-align: middle;
         color: $color-text-primary;
-        background: $color-white; 
+        background: $color-white;
       }
 
       td:last-child {
@@ -103,14 +103,14 @@
       }
 
       &:hover td {
-        background: $color-bg-row-hover; 
+        background: $color-bg-row-hover;
       }
     }
   }
 }
 
 .table tbody tr td {
-  border-bottom: none ;
+  border-bottom: none;
 }
 
 /* Rounded edges (left & right of each row) */
