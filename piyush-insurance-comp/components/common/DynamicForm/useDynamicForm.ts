@@ -5,7 +5,6 @@ import {
   FieldValues,
   Path,
   PathValue,
-  SubmitHandler,
   useWatch,
 } from 'react-hook-form';
 import { useEffect } from 'react';
@@ -18,7 +17,6 @@ interface UseDynamicFormProps<FormValues extends FieldValues> {
 }
 
 export function useDynamicForm<FormValues extends FieldValues>({
-  fields,
   defaultValues,
 }: UseDynamicFormProps<FormValues>) {
   const {
@@ -34,7 +32,7 @@ export function useDynamicForm<FormValues extends FieldValues>({
 
   const watchedValues = useWatch({ control });
 
-  /* ---------- Prefill ---------- */
+  /* Prefill */
 
   useEffect(() => {
     if (defaultValues) {
@@ -42,7 +40,7 @@ export function useDynamicForm<FormValues extends FieldValues>({
     }
   }, [defaultValues, reset]);
 
-  /* ---------- Resolve dependent options ---------- */
+  /* Resolve dependent options */
 
   const resolveOptions = (field: FieldConfig<FormValues>) => {
     if (field.dependsOn) {
@@ -53,7 +51,7 @@ export function useDynamicForm<FormValues extends FieldValues>({
     return field.options ?? [];
   };
 
-  /* ---------- Image handler ---------- */
+  /* Image handler */
 
   const handleImageChange = <K extends Path<FormValues>>(
     name: K,

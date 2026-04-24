@@ -7,7 +7,7 @@ import DynamicForm from '@/components/common/DynamicForm';
 
 import { companyColumns } from '@/components/CompanyListing/companyColumns';
 import { companyFields } from '@/components/CompanyListing/companyFields';
-import { COMPANY_IMAGE_FIELDS } from '@/components/CompanyListing/constants';
+import { COMPANY_IMAGE_FIELDS, COMPANY_LISTING_TEXT, COMPANY_SUBMIT_LABELS, MODAL_TITLE } from './constants';
 
 import { useCompanyListing } from './useCompanyListing';
 import { CompanyFormValues } from '@/types/companyform';
@@ -20,7 +20,6 @@ export default function CompanyListing() {
     companyToDelete,
     formMode,
     defaultValues,
-
     handleAdd,
     handleCloseFormModal,
     handleSubmit,
@@ -35,10 +34,9 @@ export default function CompanyListing() {
 
   return (
     <>
-      {/* Table */}
       <DataTable
-        title="Insurance Companies"
-        buttonText="Add Insurance Company"
+        title={COMPANY_LISTING_TEXT.TITLE}
+        buttonText={COMPANY_LISTING_TEXT.BUTTON_TEXT}
         onAdd={handleAdd}
         columns={companyColumns}
         data={companies}
@@ -47,16 +45,12 @@ export default function CompanyListing() {
         onLocations={handleLocations}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        
       />
 
-      {/* Add / Edit Modal */}
       <AppModal
         show={showFormModal}
-        title={
-          formMode === 'edit'
-            ? 'Edit Insurance Company'
-            : 'Add Insurance Company'
-        }
+        title={formMode === MODAL_TITLE.mode ? MODAL_TITLE.editTitle : MODAL_TITLE.addTitle}
         onClose={handleCloseFormModal}
       >
         <DynamicForm<CompanyFormValues>
@@ -64,11 +58,11 @@ export default function CompanyListing() {
           imageFields={COMPANY_IMAGE_FIELDS}
           onSubmit={handleSubmit}
           mode={formMode}
+          submitLabel={COMPANY_SUBMIT_LABELS[formMode]}
           defaultValues={defaultValues}
         />
       </AppModal>
 
-      {/* Delete Confirm Modal */}
       <ConfirmModal
         show={showConfirmModal}
         companyName={companyToDelete?.company_name ?? ''}

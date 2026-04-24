@@ -1,7 +1,8 @@
 @use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
 
 .body {
-  padding: 32px 24px 24px;
+  padding: $spacing-32 $spacing-24 $spacing-24;
   text-align: center;
 }
 
@@ -9,13 +10,13 @@
   font-size: $font-18;
   font-weight: 700;
   color: $color-black;
-  margin-bottom: 12px;
+  margin-bottom: $spacing-12;
 }
 
 .message {
   font-size: $font-14;
   color: $color-text-primary;
-  margin-bottom: 24px;
+  margin-bottom: $spacing-24;
 
   strong {
     font-weight: 700;
@@ -26,12 +27,12 @@
 .actions {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: $spacing-10
 }
 
 .confirmBtn {
-  height: 38px;
-  padding: 0 24px;
+  @include height (38px);
+  padding: 0 $spacing-24;
   border: none;
   border-radius: $radius-sm;
   background: $color-primary-light;
@@ -42,8 +43,8 @@
 }
 
 .cancelBtn {
-  height: 38px;
-  padding: 0 24px;
+  @include height (38px);
+  padding: 0 $spacing-24;
   border: 1px solid $color-border;
   border-radius: $radius-sm;
   background: $color-white;

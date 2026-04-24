@@ -18,6 +18,7 @@ interface DynamicFormProps<FormValues extends FieldValues> {
   onSubmit: SubmitHandler<FormValues>;
   mode?: 'create' | 'edit';
   defaultValues?: Partial<FormValues>;
+  submitLabel: string;
 }
 
 export default function DynamicForm<FormValues extends FieldValues>({
@@ -26,6 +27,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
   onSubmit,
   mode = 'create',
   defaultValues,
+  submitLabel
 }: DynamicFormProps<FormValues>) {
   const {
     register,
@@ -112,10 +114,10 @@ export default function DynamicForm<FormValues extends FieldValues>({
 
   /* Submit Label */
 
-  const submitLabel =
-    mode === 'edit'
-      ? 'Update Insurance Company'
-      : 'Create Insurance Company';
+  // const submitLabel =
+  //   mode === 'edit'
+  //     ? 'Update Insurance Company'
+  //     : 'Create Insurance Company';
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

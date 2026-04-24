@@ -18,6 +18,8 @@ interface DataTableProps<RowData> {
   columns: Column<RowData>[];
   data: RowData[];
 
+  searchBar?: ReactNode;
+
   onRate?: (row: RowData) => void;
   onContacts?: (row: RowData) => void;
   onLocations?: (row: RowData) => void;
@@ -32,6 +34,7 @@ export default function DataTable<RowData>({
   columns,
   data,
   onRate,
+  searchBar,
   onContacts,
   onLocations,
   onEdit,
@@ -60,6 +63,10 @@ export default function DataTable<RowData>({
           </button>
         )}
       </div>
+
+       {searchBar && (
+        <div className={styles.searchBar}>{searchBar}</div>
+      )}
 
       {/* Table */}
       <div className={styles.tableWrapper}>

@@ -187,3 +187,43 @@
   padding: $spacing-16;
   color: $color-text-secondary;
 }
+
+.searchBar {
+  padding: $spacing-12 $spacing-16;
+  border-bottom: 1px solid $color-border;
+}
+
+.searchInputWrapper {
+  position: relative;
+  @include width(350px);
+
+  svg {
+    position: absolute;
+    left: $spacing-10;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: $font-14;
+    color: $color-text-secondary;
+    pointer-events: none;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  @include height(34px);
+  padding: 0 $spacing-10 0 $spacing-32;   
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $font-12;
+  color: $color-text-primary;
+  background: $color-white;
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
