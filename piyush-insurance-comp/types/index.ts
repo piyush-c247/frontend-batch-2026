@@ -15,4 +15,6 @@ export type Company = {
   aiin_code: string | null;
   fein_code: string | null;
   insurance_rate_data: InsuranceRateData | null;
+  logo_web?: File | null;
+  logo_print?: File | null;
 };
