@@ -1,73 +1,65 @@
 'use client';
 
-import { useForm, FieldValues, SubmitHandler, PathValue, useWatch } from 'react-hook-form';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
 import { DndContext } from '@dnd-kit/core';
-import { useEffect } from 'react';
+
 import { FieldConfig, ImageField } from './types';
+import { useDynamicForm } from './useDynamicForm';
+
 import ImageUpload from '../ImageUpload';
-import styles from './DynamicForm.module.scss';
 import { ToolTipIcon } from '../ToolTipIcon';
-import { statesByCountry } from '@/data/location';
+
+import styles from './DynamicForm.module.scss';
 
 interface DynamicFormProps<FormValues extends FieldValues> {
   fields: FieldConfig<FormValues>[];
   imageFields?: ImageField<FormValues>[];
   onSubmit: SubmitHandler<FormValues>;
-  mode?: 'create' | 'edit';                 // ← ADD
-  defaultValues?: Partial<FormValues>;       // ← ADD
+  mode?: 'create' | 'edit';
+  defaultValues?: Partial<FormValues>;
 }
 
 export default function DynamicForm<FormValues extends FieldValues>({
   fields,
   imageFields,
   onSubmit,
-  mode = 'create',                          // ← ADD
-  defaultValues,                            // ← ADD
+  mode = 'create',
+  defaultValues,
 }: DynamicFormProps<FormValues>) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-    setValue,
-    control,
-    reset,                                  // ← ADD
-  } = useForm<FormValues>({ mode: 'onChange' });
+    errors,
+    isValid,
+    isDirty,
+    resolveOptions,
+    handleImageChange,
+  } = useDynamicForm<FormValues>({ fields, defaultValues });
 
-  const watchedValues = useWatch({ control });
-
-  /* ---------- Prefill on edit ---------- */
-
-  useEffect(() => {
-    if (defaultValues) {
-      reset(defaultValues as FormValues);
-    }
-  }, [defaultValues, reset]);
-
-  /* ---------- Resolve options ---------- */
-
-  const resolveOptions = (field: FieldConfig<FormValues>) => {
-    if (field.dependsOn) {
-      const parentValue = watchedValues[field.dependsOn as string] as string;
-      return parentValue ? (statesByCountry[parentValue] ?? []) : [];
-    }
-    return field.options ?? [];
-  };
-
-  /* ---------- Render Field ---------- */
+  /* Field Render */
 
   const renderField = (field: FieldConfig<FormValues>) => {
-    const { name, label, type, validation, tooltip, placeholder, fullWidth, uppercase } = field;
+    const {
+      name,
+      label,
+      type,
+      validation,
+      tooltip,
+      placeholder,
+      fullWidth,
+      uppercase,
+    } = field;
+
     const options = resolveOptions(field);
 
     return (
       <div
-        className={`${styles.field} ${fullWidth ? styles.fullWidth : ''}`}
         key={String(name)}
+        className={`${styles.field} ${fullWidth ? styles.fullWidth : ''}`}
       >
         <label>
-          {label}{' '}
-          {field.required && <span>(Required)</span>}
+          {label} {field.required && <span>(Required)</span>}
           {tooltip && (
             <span className={styles.tooltip}>
               <ToolTipIcon text={tooltip} />
@@ -95,34 +87,35 @@ export default function DynamicForm<FormValues extends FieldValues>({
         )}
 
         {errors[name] && (
-          <p className={styles.error}>{errors[name]?.message as string}</p>
+          <p className={styles.error}>
+            {errors[name]?.message as string}
+          </p>
         )}
       </div>
     );
   };
 
-  /* ---------- Image Fields ---------- */
+  /* Image Fields */
 
-  const renderImageFields = () => (
+  const renderImages = () => (
     <DndContext>
       {imageFields?.map((img) => (
         <ImageUpload
           key={String(img.name)}
           id={String(img.name)}
           label={img.label}
-          onChange={(file) => {
-            setValue(img.name, file as PathValue<FormValues, typeof img.name>);
-          }}
+          onChange={(file) => handleImageChange(img.name, file)}
         />
       ))}
     </DndContext>
   );
 
-  /* ---------- Submit label ---------- */
+  /* Submit Label */
 
-  const submitLabel = mode === 'edit'
-    ? 'Update Insurance Company'
-    : 'Create Insurance Company';
+  const submitLabel =
+    mode === 'edit'
+      ? 'Update Insurance Company'
+      : 'Create Insurance Company';
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -131,13 +124,13 @@ export default function DynamicForm<FormValues extends FieldValues>({
       </div>
 
       {imageFields && (
-        <div className={styles.images}>{renderImageFields()}</div>
+        <div className={styles.images}>{renderImages()}</div>
       )}
 
       <button
         type="submit"
         className={styles.submit}
-        disabled={!isValid}
+        disabled={!isValid || (mode === 'edit' && !isDirty)}
       >
         {submitLabel}
       </button>

@@ -1,21 +1,19 @@
-// components/CompanyListing/useCompanyListing.ts
+'use client';
 
-"use client";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 import {
   addCompanyToDB,
   getAllCompanies,
   updateCompanyInDB,
   deleteCompanyFromDB,
-} from "@/utils/indexedDB";
+} from '@/utils/indexedDB';
 
-import { toastSuccess, toastError } from "@/utils/toast";
+import { toastSuccess, toastError } from '@/utils/toast';
 
-import { Company } from "@/types";
-import { CompanyFormValues } from "@/types/companyform";
-import { companyList } from "@/data/mockData";
+import { Company } from '@/types';
+import { CompanyFormValues } from '@/types/companyform';
+import { companyList } from '@/data/mockData';
 
 export function useCompanyListing() {
   /* ---------- State ---------- */
@@ -25,9 +23,9 @@ export function useCompanyListing() {
   const [companies, setCompanies] = useState<Company[]>(companyList);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [companyToDelete, setCompanyToDelete] = useState<Company | null>(null);
-  const [formMode, setFormMode] = useState<"create" | "edit">("create");
+  const [formMode, setFormMode] = useState<'create' | 'edit'>('create');
 
-  /* ---------- Load from IndexedDB on mount ---------- */
+  /* ---------- Load from IndexedDB ---------- */
 
   useEffect(() => {
     const load = async () => {
@@ -41,31 +39,41 @@ export function useCompanyListing() {
     load();
   }, []);
 
-  /* ---------- Map Company → CompanyFormValues (for prefill) ---------- */
+  /* ---------- Mapping: Company → Form ---------- */
 
-  const mapCompanyToForm = (company: Company): Partial<CompanyFormValues> => ({
+  const mapCompanyToForm = (company: Company): CompanyFormValues => ({
     company_name: company.company_name,
     location_name: company.location_name,
     address_1: company.address_1,
-    address_2: company.address_2 ?? "",
+    address_2: company.address_2 ?? '',
     country: company.country,
     state: company.state,
     city: company.city,
     postal_code: company.postal_code,
+
     am_best_code: company.am_code,
     am_best_rating: company.am_best_rating,
-    am_best_profile_link: company.am_best_profile_link ?? "",
-    ibc_code: company.ibc_code ?? "",
-    fein_code: company.fein_code ?? "",
-    naic_code: company.naic_code ?? "",
-    company_profile_link: company.company_profile_link ?? "",
-    aiin_code: company.aiin_code ?? "",
-    aiin_profile_link: company.aiin_profile_link ?? "",
+    am_best_profile_link: company.am_best_profile_link ?? '',
+
+    ibc_code: company.ibc_code ?? '',
+    fein_code: company.fein_code ?? '',
+    naic_code: company.naic_code ?? '',
+
+    company_profile_link: company.company_profile_link ?? '',
+
+    aiin_code: company.aiin_code ?? '',
+    aiin_profile_link: company.aiin_profile_link ?? '',
+
+    // file fields should not prefill
+    logo_web: undefined,
+    logo_print: undefined,
   });
 
-  /* ---------- Map CompanyFormValues → Company (for save) ---------- */
+  /* ---------- Mapping: Form → Company ---------- */
 
-  const mapFormToCompany = (data: CompanyFormValues): Omit<Company, "id"> => ({
+  const mapFormToCompany = (
+    data: CompanyFormValues
+  ): Omit<Company, 'id'> => ({
     company_name: data.company_name,
     location_name: data.location_name,
     address_1: data.address_1,
@@ -74,25 +82,37 @@ export function useCompanyListing() {
     state: data.state,
     city: data.city,
     postal_code: data.postal_code,
-    am_code: data.am_best_code ?? "",
+
+    am_code: data.am_best_code ?? '',
     am_best_rating: data.am_best_rating,
     am_best_profile_link: data.am_best_profile_link ?? null,
+
     ibc_code: data.ibc_code ?? null,
     fein_code: data.fein_code ?? null,
     naic_code: data.naic_code ?? null,
+
     company_profile_link: data.company_profile_link ?? null,
+
     aiin_code: data.aiin_code ?? null,
     aiin_profile_link: data.aiin_profile_link ?? null,
+
     logo_web: data.logo_web ?? null,
     logo_print: data.logo_print ?? null,
+
     insurance_rate_data: null,
   });
 
-  /* ---------- Modal handlers ---------- */
+  /* ---------- Derived ---------- */
+
+  const defaultValues = selectedCompany
+    ? mapCompanyToForm(selectedCompany)
+    : undefined;
+
+  /* ---------- Modal Handlers ---------- */
 
   const handleAdd = () => {
     setSelectedCompany(null);
-    setFormMode("create");
+    setFormMode('create');
     setShowFormModal(true);
   };
 
@@ -107,6 +127,7 @@ export function useCompanyListing() {
     try {
       const newCompany = await addCompanyToDB(mapFormToCompany(data));
       setCompanies((prev) => [newCompany, ...prev]);
+
       toastSuccess.companyCreated();
       handleCloseFormModal();
     } catch {
@@ -118,7 +139,7 @@ export function useCompanyListing() {
 
   const handleEdit = (row: Company) => {
     setSelectedCompany(row);
-    setFormMode("edit");
+    setFormMode('edit');
     setShowFormModal(true);
   };
 
@@ -135,7 +156,7 @@ export function useCompanyListing() {
       await updateCompanyInDB(updated);
 
       setCompanies((prev) =>
-        prev.map((c) => (c.id === updated.id ? updated : c)),
+        prev.map((c) => (c.id === updated.id ? updated : c))
       );
 
       toastSuccess.companyUpdated();
@@ -145,10 +166,10 @@ export function useCompanyListing() {
     }
   };
 
-  /* ---------- Submit router ---------- */
+  /* ---------- Submit Router ---------- */
 
   const handleSubmit = (data: CompanyFormValues) => {
-    if (formMode === "edit") return handleUpdate(data);
+    if (formMode === 'edit') return handleUpdate(data);
     return handleCreate(data);
   };
 
@@ -164,7 +185,11 @@ export function useCompanyListing() {
 
     try {
       await deleteCompanyFromDB(companyToDelete.id);
-      setCompanies((prev) => prev.filter((c) => c.id !== companyToDelete.id));
+
+      setCompanies((prev) =>
+        prev.filter((c) => c.id !== companyToDelete.id)
+      );
+
       toastSuccess.companyDeleted();
     } catch {
       toastError.companyDelete();
@@ -179,13 +204,16 @@ export function useCompanyListing() {
     setShowConfirmModal(false);
   };
 
-  /* ---------- Other row actions ---------- */
+  /* ---------- Other Actions ---------- */
 
-  const handleRate = (row: Company) => console.log("Open Rate Page", row);
+  const handleRate = (row: Company) =>
+    console.log('Open Rate Page', row);
+
   const handleContacts = (row: Company) =>
-    console.log("Open Contacts Page", row);
+    console.log('Open Contacts Page', row);
+
   const handleLocations = (row: Company) =>
-    console.log("Open Locations Page", row);
+    console.log('Open Locations Page', row);
 
   /* ---------- Return ---------- */
 
@@ -197,6 +225,7 @@ export function useCompanyListing() {
     selectedCompany,
     companyToDelete,
     formMode,
+    defaultValues,
 
     // handlers
     handleAdd,
