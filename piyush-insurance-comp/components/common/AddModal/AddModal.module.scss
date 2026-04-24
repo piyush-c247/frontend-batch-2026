@@ -22,7 +22,7 @@
   color: $color-primary;
   border: none;
   border-radius: $spacing-4;
-   @include width(28px);
-    @include height(28px);
+  @include width(28px);
+  @include height(28px);
   cursor: pointer;
 }

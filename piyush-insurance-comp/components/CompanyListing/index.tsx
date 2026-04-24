@@ -45,7 +45,7 @@ export default function CompanyListing() {
         onLocations={handleLocations}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        
+
       />
 
       <AppModal

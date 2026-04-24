@@ -33,5 +33,3 @@
 @mixin border($color, $width: 1px, $style: solid) {
   border: $width $style $color;
 }
-
-

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   useForm,
@@ -6,10 +6,10 @@ import {
   Path,
   PathValue,
   useWatch,
-} from 'react-hook-form';
-import { useEffect } from 'react';
-import { FieldConfig } from './types';
-import { statesByCountry } from '@/data/location';
+} from "react-hook-form";
+import { useEffect } from "react";
+import { FieldConfig } from "./types";
+import { statesByCountry } from "@/data/location";
 
 interface UseDynamicFormProps<FormValues extends FieldValues> {
   fields: FieldConfig<FormValues>[];
@@ -27,7 +27,7 @@ export function useDynamicForm<FormValues extends FieldValues>({
     control,
     reset,
   } = useForm<FormValues>({
-    mode: 'onChange',
+    mode: "onChange",
   });
 
   const watchedValues = useWatch({ control });
@@ -44,8 +44,10 @@ export function useDynamicForm<FormValues extends FieldValues>({
 
   const resolveOptions = (field: FieldConfig<FormValues>) => {
     if (field.dependsOn) {
-      const parentValue = watchedValues[field.dependsOn as Path<FormValues>] as string;
-      return parentValue ? statesByCountry[parentValue] ?? [] : [];
+      const parentValue = watchedValues[
+        field.dependsOn as Path<FormValues>
+      ] as string;
+      return parentValue ? (statesByCountry[parentValue] ?? []) : [];
     }
 
     return field.options ?? [];
@@ -55,7 +57,7 @@ export function useDynamicForm<FormValues extends FieldValues>({
 
   const handleImageChange = <K extends Path<FormValues>>(
     name: K,
-    file: File | null
+    file: File | null,
   ) => {
     setValue(name, file as PathValue<FormValues, K>, {
       shouldValidate: true,

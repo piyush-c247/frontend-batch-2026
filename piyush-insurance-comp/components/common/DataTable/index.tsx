@@ -64,7 +64,7 @@ export default function DataTable<RowData>({
         )}
       </div>
 
-       {searchBar && (
+      {searchBar && (
         <div className={styles.searchBar}>{searchBar}</div>
       )}
 

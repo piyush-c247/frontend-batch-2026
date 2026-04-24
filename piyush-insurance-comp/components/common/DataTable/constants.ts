@@ -4,37 +4,37 @@ import {
   FaMapMarkerAlt,
   FaEdit,
   FaTrash,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
 export const TEXTS = {
-  actions: 'Actions',
-  noData: 'No Data Available',
+  actions: "Actions",
+  noData: "No Data Available",
 } as const;
 
 export const ACTIONS = [
   {
-    key: 'rate',
+    key: "rate",
     icon: FaChartBar,
-    styleKey: 'rate',
+    styleKey: "rate",
   },
   {
-    key: 'contacts',
+    key: "contacts",
     icon: FaAddressBook,
-    styleKey: 'contacts',
+    styleKey: "contacts",
   },
   {
-    key: 'locations',
+    key: "locations",
     icon: FaMapMarkerAlt,
-    styleKey: 'locations',
+    styleKey: "locations",
   },
   {
-    key: 'edit',
+    key: "edit",
     icon: FaEdit,
-    styleKey: 'edit',
+    styleKey: "edit",
   },
   {
-    key: 'delete',
+    key: "delete",
     icon: FaTrash,
-    styleKey: 'delete',
+    styleKey: "delete",
   },
 ] as const;
