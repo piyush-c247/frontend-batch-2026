@@ -1,0 +1,54 @@
+@use '@/styles/variables' as *;
+
+.body {
+  padding: 32px 24px 24px;
+  text-align: center;
+}
+
+.title {
+  font-size: $font-18;
+  font-weight: 700;
+  color: $color-black;
+  margin-bottom: 12px;
+}
+
+.message {
+  font-size: $font-14;
+  color: $color-text-primary;
+  margin-bottom: 24px;
+
+  strong {
+    font-weight: 700;
+    color: $color-black;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.confirmBtn {
+  height: 38px;
+  padding: 0 24px;
+  border: none;
+  border-radius: $radius-sm;
+  background: $color-primary-light;
+  color: $color-white;
+  font-size: $font-14;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  height: 38px;
+  padding: 0 24px;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-white;
+  color: $color-text-primary;
+  font-size: $font-14;
+  font-weight: 500;
+  cursor: pointer;
+}

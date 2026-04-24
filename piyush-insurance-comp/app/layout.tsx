@@ -1,3 +1,5 @@
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/_globals.scss';
 
@@ -15,6 +17,7 @@ export default function RootLayout({
         <main style={{ marginTop: '60px' }}>
           {children}
         </main>
+        <ToastContainer position="top-right" autoClose={3000} />
       </body>
     </html>
   );

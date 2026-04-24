@@ -2,7 +2,8 @@
 
 import { useForm, FieldValues, SubmitHandler, PathValue, useWatch } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
-import { DndContext } from '@dnd-kit/core';       
+import { DndContext } from '@dnd-kit/core';
+import { useEffect } from 'react';
 import { FieldConfig, ImageField } from './types';
 import ImageUpload from '../ImageUpload';
 import styles from './DynamicForm.module.scss';
@@ -13,12 +14,16 @@ interface DynamicFormProps<FormValues extends FieldValues> {
   fields: FieldConfig<FormValues>[];
   imageFields?: ImageField<FormValues>[];
   onSubmit: SubmitHandler<FormValues>;
+  mode?: 'create' | 'edit';                 // ← ADD
+  defaultValues?: Partial<FormValues>;       // ← ADD
 }
 
 export default function DynamicForm<FormValues extends FieldValues>({
   fields,
   imageFields,
   onSubmit,
+  mode = 'create',                          // ← ADD
+  defaultValues,                            // ← ADD
 }: DynamicFormProps<FormValues>) {
   const {
     register,
@@ -26,9 +31,20 @@ export default function DynamicForm<FormValues extends FieldValues>({
     formState: { errors, isValid },
     setValue,
     control,
+    reset,                                  // ← ADD
   } = useForm<FormValues>({ mode: 'onChange' });
 
   const watchedValues = useWatch({ control });
+
+  /* ---------- Prefill on edit ---------- */
+
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues as FormValues);
+    }
+  }, [defaultValues, reset]);
+
+  /* ---------- Resolve options ---------- */
 
   const resolveOptions = (field: FieldConfig<FormValues>) => {
     if (field.dependsOn) {
@@ -38,7 +54,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
     return field.options ?? [];
   };
 
-  /* Render Field */
+  /* ---------- Render Field ---------- */
 
   const renderField = (field: FieldConfig<FormValues>) => {
     const { name, label, type, validation, tooltip, placeholder, fullWidth, uppercase } = field;
@@ -85,14 +101,14 @@ export default function DynamicForm<FormValues extends FieldValues>({
     );
   };
 
-  /* Image Fields */
+  /* ---------- Image Fields ---------- */
 
   const renderImageFields = () => (
     <DndContext>
       {imageFields?.map((img) => (
         <ImageUpload
           key={String(img.name)}
-          id={String(img.name)}           
+          id={String(img.name)}
           label={img.label}
           onChange={(file) => {
             setValue(img.name, file as PathValue<FormValues, typeof img.name>);
@@ -101,6 +117,12 @@ export default function DynamicForm<FormValues extends FieldValues>({
       ))}
     </DndContext>
   );
+
+  /* ---------- Submit label ---------- */
+
+  const submitLabel = mode === 'edit'
+    ? 'Update Insurance Company'
+    : 'Create Insurance Company';
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -117,7 +139,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
         className={styles.submit}
         disabled={!isValid}
       >
-        Create Insurance Company
+        {submitLabel}
       </button>
     </form>
   );
