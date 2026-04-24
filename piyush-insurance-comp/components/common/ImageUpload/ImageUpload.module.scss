@@ -19,29 +19,44 @@
   border: 1px dashed $color-border;
   border-radius: $radius-sm;
   background: $color-bg-light;
-
   padding: $spacing-16;
-
   cursor: pointer;
   text-align: center;
+  transition: all 0.2s ease;
 
   @include flex(center, center);
   flex-direction: column;
   gap: $spacing-6;
+}
 
-  transition: all 0.2s ease;
+/* Drag active */
+.dragOver {
+  border-color: $color-primary;
+  background: rgba($color-primary, 0.04);
+}
 
+/* Error border */
+.hasError {
+  border-color: $color-danger;
+  border-style: solid;
+}
+
+/* Filled state */
+.filled {
+  border-style: solid;
+  border-color: $color-primary-light;
+  background: $color-white;
+  cursor: default;
+  padding: $spacing-12;
 }
 
 /* Icon */
 .icon {
-  border-radius: 50%;
-
   @include flex(center, center);
 
   svg {
-    width: 50px;
-    height: 50px;
+    @include width(50px);
+    @include height(50px);
     color: $color-text-secondary;
   }
 }
@@ -59,11 +74,10 @@
   margin: 0;
 }
 
-/* Button */
+/* Browse Button */
 .browseBtn {
   border: 1px solid $color-border;
   background: $color-brows-btn;
-
   padding: $spacing-6 $spacing-10;
   border-radius: $radius-sm;
   color: $color-white;
@@ -78,38 +92,79 @@
   color: $color-text-secondary;
 }
 
-.dragOver {
-  border-color: $color-primary;
-  background: rgba($color-primary, 0.04);
-}
-/* Drag active */
-.dragOver {
-  border-color: $color-primary;
-  background: $color-bg-hover;
+/* Validation error */
+.error {
+  font-size: $font-10;
+  color: $color-danger;
+  margin-top: $spacing-4;
 }
 
-/* When file selected */
-.filled {
-  border-style: solid;
-  background: $color-white;
+/*  Preview  */
+
+.preview {
+  width: 100%;
+  @include flex(center, space-between);
+  gap: $spacing-12;
 }
 
-/* Preview */
-.filePreview {
-  text-align: center;
+/* Thumbnail */
+.thumbnail {
+  @include width(60px);
+  @include height(60px);
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: $color-bg-light;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
+/* File info */
+.fileInfo {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  min-width: 0;         
+}
 .fileName {
   font-size: $font-12;
-  font-weight: 500;
-  margin-bottom: $spacing-6;
+  font-weight: 600;
+  color: $color-text-primary;
+  margin: 0 0 $spacing-2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: $max-width-140;     
 }
 
-/* Remove button */
+.fileSize {
+  font-size: $font-10;
+  color: $color-text-secondary;
+  margin: 0;
+}
+
+/* Remove Button */
 .removeBtn {
-  font-size: 11px;
-  border: none;
-  background: transparent;
-  color: $color-danger;
+  @include width(22px);
+  @include height(22px);
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  background: $color-white;
+  color: $color-text-secondary;
+  font-size: $font-10;
   cursor: pointer;
+  @include flex(center, center);
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+  }
 }

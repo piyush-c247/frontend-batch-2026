@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import styles from './ImageUpload.module.scss';
 import { UploadImageIcon } from '@/components/common/UploadImageIcon';
+import { IMAGE_UPLOAD_CONSTANTS } from './constants';
 
 interface Props {
   id: string;
@@ -16,41 +17,54 @@ export default function ImageUpload({ id, label, onChange }: Props) {
 
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const { setNodeRef } = useDroppable({ id });
 
-  /* ---------- Validation ---------- */
+  /* Validation */
 
-  const validateFile = (file: File) => {
-    const validTypes = ['image/png', 'image/jpeg', 'image/svg+xml'];
-    const maxSize = 5 * 1024 * 1024;
+  const validateFile = (file: File): string | null => {
+    const { ALLOWED_TYPES, MAX_SIZE_BYTES, TYPE_ERROR, SIZE_ERROR } = IMAGE_UPLOAD_CONSTANTS.VALIDATION;
 
-    if (!validTypes.includes(file.type)) return false;
-    if (file.size > maxSize) return false;
+    if (!ALLOWED_TYPES.includes(file.type))
+      return TYPE_ERROR;
+    if (file.size > MAX_SIZE_BYTES)
+      return SIZE_ERROR;
 
-    return true;
+    return null;
   };
 
   const handleFile = (file: File | null) => {
     if (!file) {
-      setSelectedFile(null);
-      onChange(null);
+      clearFile();
       return;
     }
 
-    const isValid = validateFile(file);
+    const validationError = validateFile(file);
 
-    if (!isValid) {
-      setSelectedFile(null);
-      onChange(null);
+    if (validationError) {
+      clearFile();
+      setError(validationError);
       return;
     }
 
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
     setSelectedFile(file);
+    setError(null);
     onChange(file);
   };
 
-  /* ---------- Events ---------- */
+  const clearFile = () => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    setError(null);
+    onChange(null);
+  };
+
+  /* Events */
 
   const handleBrowse = () => inputRef.current?.click();
 
@@ -72,28 +86,38 @@ export default function ImageUpload({ id, label, onChange }: Props) {
     e.target.value = '';
   };
 
-  const handleRemove = () => {
-    setSelectedFile(null);
-    onChange(null);
-  };
-
-  /* ---------- UI ---------- */
+  /* UI */
 
   const renderContent = () => {
-    if (selectedFile) {
+    if (selectedFile && previewUrl) {
       return (
-        <div className={styles.filePreview}>
-          <p className={styles.fileName}>{selectedFile.name}</p>
+        <div className={styles.preview}>
+
+          {/* Thumbnail */}
+          <div className={styles.thumbnail}>
+            <img src={previewUrl} alt={selectedFile.name} />
+          </div>
+
+          {/* File info */}
+          <div className={styles.fileInfo}>
+            <p className={styles.fileName}>{selectedFile.name}</p>
+            <p className={styles.fileSize}>
+              {(selectedFile.size / 1024).toFixed(1)} KB
+            </p>
+          </div>
+
+          {/* Remove */}
           <button
             type="button"
             className={styles.removeBtn}
             onClick={(e) => {
               e.stopPropagation();
-              handleRemove();
+              clearFile();
             }}
           >
-            Remove
+            ✕
           </button>
+
         </div>
       );
     }
@@ -105,14 +129,12 @@ export default function ImageUpload({ id, label, onChange }: Props) {
         </div>
 
         <button type="button" className={styles.browseBtn}>
-          Browse files
+          {IMAGE_UPLOAD_CONSTANTS.UI.BROWSE_BTN}
         </button>
 
-        <p className={styles.secondaryText}>Or</p>
-
-        <p className={styles.primaryText}>Drag your file here</p>
-
-        <span className={styles.helper}>Maximum file size: 5MB</span>
+        <p className={styles.secondaryText}>{IMAGE_UPLOAD_CONSTANTS.UI.OR_TEXT}</p>
+        <p className={styles.primaryText}>{IMAGE_UPLOAD_CONSTANTS.UI.DRAG_TEXT}</p>
+        <span className={styles.helper}>{IMAGE_UPLOAD_CONSTANTS.UI.MAX_SIZE_LABEL}</span>
       </>
     );
   };
@@ -127,8 +149,9 @@ export default function ImageUpload({ id, label, onChange }: Props) {
           ${styles.dropzone}
           ${isDraggingOver ? styles.dragOver : ''}
           ${selectedFile ? styles.filled : ''}
+          ${error ? styles.hasError : ''}
         `}
-        onClick={handleBrowse}
+        onClick={!selectedFile ? handleBrowse : undefined}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -139,10 +162,13 @@ export default function ImageUpload({ id, label, onChange }: Props) {
           ref={inputRef}
           type="file"
           hidden
-          accept=".png,.jpg,.jpeg,.svg"
+          accept=".png,.jpg,.jpeg"
           onChange={handleChange}
         />
       </div>
+
+      {/* Validation error */}
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 }
