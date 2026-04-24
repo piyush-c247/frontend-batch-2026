@@ -2,7 +2,7 @@
 
 import { useForm, FieldValues, SubmitHandler, PathValue, useWatch } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
-import { DndContext } from '@dnd-kit/core';          // ← ADD
+import { DndContext } from '@dnd-kit/core';       
 import { FieldConfig, ImageField } from './types';
 import ImageUpload from '../ImageUpload';
 import styles from './DynamicForm.module.scss';
@@ -38,7 +38,7 @@ export default function DynamicForm<FormValues extends FieldValues>({
     return field.options ?? [];
   };
 
-  /* ---------- Render Field ---------- */
+  /* Render Field */
 
   const renderField = (field: FieldConfig<FormValues>) => {
     const { name, label, type, validation, tooltip, placeholder, fullWidth, uppercase } = field;
@@ -85,14 +85,14 @@ export default function DynamicForm<FormValues extends FieldValues>({
     );
   };
 
-  /* ---------- Image Fields ---------- */
+  /* Image Fields */
 
   const renderImageFields = () => (
     <DndContext>
       {imageFields?.map((img) => (
         <ImageUpload
           key={String(img.name)}
-          id={String(img.name)}              // ← ADD: droppable id
+          id={String(img.name)}           
           label={img.label}
           onChange={(file) => {
             setValue(img.name, file as PathValue<FormValues, typeof img.name>);

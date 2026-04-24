@@ -3,7 +3,7 @@
 import DataTable from '@/components/common/DataTable';
 import AppModal from '@/components/common/AddModal';
 import DynamicForm from '@/components/common/DynamicForm';
-
+import { COMPANY_IMAGE_FIELDS, COMPANY_LISTING_TEXT } from '@/components/CompanyListing/constants';
 import { companyColumns } from '@/components/CompanyListing/companyColumns';
 import { companyFields } from '@/components/CompanyListing/companyFields';
 import { useCompanyListing } from './useCompanyListing';
@@ -27,7 +27,7 @@ export default function CompanyListing() {
   return (
     <>
       <DataTable
-        title="Insurance Companies"
+        title={COMPANY_LISTING_TEXT.TITLE}
         buttonText="Add Insurance Company"
         onAdd={handleAdd}
         columns={companyColumns}
@@ -41,15 +41,12 @@ export default function CompanyListing() {
 
       <AppModal
         show={showModal}
-        title="Add Insurance Company"
+        title={COMPANY_LISTING_TEXT.BUTTON_TEXT}
         onClose={handleCloseModal}
       >
         <DynamicForm<CompanyFormValues>
           fields={companyFields}
-          imageFields={[
-            { name: 'logo_web', label: 'Company Logo - Web (72 dpi)' },
-            { name: 'logo_print', label: 'Company Logo - Print (300 dpi)' },
-          ]}
+          imageFields={COMPANY_IMAGE_FIELDS} 
           onSubmit={handleSubmit}
         />
       </AppModal>
