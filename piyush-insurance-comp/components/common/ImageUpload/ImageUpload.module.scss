@@ -82,3 +82,34 @@
   border-color: $color-primary;
   background: rgba($color-primary, 0.04);
 }
+/* Drag active */
+.dragOver {
+  border-color: $color-primary;
+  background: $color-bg-hover;
+}
+
+/* When file selected */
+.filled {
+  border-style: solid;
+  background: $color-white;
+}
+
+/* Preview */
+.filePreview {
+  text-align: center;
+}
+
+.fileName {
+  font-size: $font-12;
+  font-weight: 500;
+  margin-bottom: $spacing-6;
+}
+
+/* Remove button */
+.removeBtn {
+  font-size: 11px;
+  border: none;
+  background: transparent;
+  color: $color-danger;
+  cursor: pointer;
+}

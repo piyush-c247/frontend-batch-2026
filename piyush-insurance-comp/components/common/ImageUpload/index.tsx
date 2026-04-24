@@ -6,27 +6,47 @@ import styles from './ImageUpload.module.scss';
 import { UploadImageIcon } from '@/components/common/UploadImageIcon';
 
 interface Props {
-  id: string;           // ← ADD: unique id for dnd-kit droppable
+  id: string;
   label: string;
   onChange: (file: File | null) => void;
 }
 
 export default function ImageUpload({ id, label, onChange }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
-  /* ---------- dnd-kit droppable ---------- */
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const { setNodeRef } = useDroppable({ id });
 
   /* ---------- Validation ---------- */
 
-  const handleFile = (file: File | null) => {
-    if (!file) { onChange(null); return; }
-
+  const validateFile = (file: File) => {
     const validTypes = ['image/png', 'image/jpeg', 'image/svg+xml'];
-    if (!validTypes.includes(file.type)) { onChange(null); return; }
+    const maxSize = 5 * 1024 * 1024;
 
+    if (!validTypes.includes(file.type)) return false;
+    if (file.size > maxSize) return false;
+
+    return true;
+  };
+
+  const handleFile = (file: File | null) => {
+    if (!file) {
+      setSelectedFile(null);
+      onChange(null);
+      return;
+    }
+
+    const isValid = validateFile(file);
+
+    if (!isValid) {
+      setSelectedFile(null);
+      onChange(null);
+      return;
+    }
+
+    setSelectedFile(file);
     onChange(file);
   };
 
@@ -52,20 +72,34 @@ export default function ImageUpload({ id, label, onChange }: Props) {
     e.target.value = '';
   };
 
+  const handleRemove = () => {
+    setSelectedFile(null);
+    onChange(null);
+  };
+
   /* ---------- UI ---------- */
 
-  return (
-    <div className={styles.wrapper}>
-      <label>{label}</label>
+  const renderContent = () => {
+    if (selectedFile) {
+      return (
+        <div className={styles.filePreview}>
+          <p className={styles.fileName}>{selectedFile.name}</p>
+          <button
+            type="button"
+            className={styles.removeBtn}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemove();
+            }}
+          >
+            Remove
+          </button>
+        </div>
+      );
+    }
 
-      <div
-        ref={setNodeRef}
-        className={`${styles.dropzone} ${isDraggingOver ? styles.dragOver : ''}`}
-        onClick={handleBrowse}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-      >
+    return (
+      <>
         <div className={styles.icon}>
           <UploadImageIcon />
         </div>
@@ -79,6 +113,27 @@ export default function ImageUpload({ id, label, onChange }: Props) {
         <p className={styles.primaryText}>Drag your file here</p>
 
         <span className={styles.helper}>Maximum file size: 5MB</span>
+      </>
+    );
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <label>{label}</label>
+
+      <div
+        ref={setNodeRef}
+        className={`
+          ${styles.dropzone}
+          ${isDraggingOver ? styles.dragOver : ''}
+          ${selectedFile ? styles.filled : ''}
+        `}
+        onClick={handleBrowse}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+      >
+        {renderContent()}
 
         <input
           ref={inputRef}
