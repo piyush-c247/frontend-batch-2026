@@ -3,7 +3,7 @@
 import { Company } from '@/types';
 
 const DB_NAME = 'insuranceDB';
-const DB_VERSION = 2;           // ← bumped to recreate store clean
+const DB_VERSION = 2;          
 const STORE_NAME = 'companies';
 
 /* ---------- Open DB ---------- */
@@ -69,7 +69,7 @@ export const updateCompanyInDB = async (company: Company): Promise<Company> => {
   return new Promise((resolve, reject) => {
     const tx      = db.transaction(STORE_NAME, 'readwrite');
     const store   = tx.objectStore(STORE_NAME);
-    const request = store.put(company);     // put = insert or replace by keyPath
+    const request = store.put(company);    
 
     request.onsuccess = () => resolve(company);
     request.onerror   = (e) => reject((e.target as IDBRequest).error);
